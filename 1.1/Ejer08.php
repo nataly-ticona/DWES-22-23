@@ -12,11 +12,13 @@
         <span>
         <?php
         for($y=1;$y<=$num;$y++){
+            echo '<p>';
             for($x=1;$x<=$y;$x++){
                 echo "* ";
             }
-            echo "<br>";
+            echo "</p><br>";
         }
+        
         ?>
         </span>
     </center>

@@ -1,3 +1,4 @@
-body>center>span{
+p{
+    padding: 2px;
     background-color: red;
 }
