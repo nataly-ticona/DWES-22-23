@@ -29,7 +29,7 @@ if (isset($_GET['cadenaT'])){
     </div>
     <div>
         <?php
-            for ($i=0;$i>=strlen($cad);$i++){
+            for ($i=0;$i<=strlen($cad);$i++){
                 if (in_array($cad[$i],["a","e","i","o","u"]) ){
                     $nV++;
                 }
