@@ -1,12 +1,13 @@
 <?php
 $cad="";
 $nV=0;
+$nC=0;
 $error=false;
 if (isset($_GET['cadenaT'])){
     $cad=$_GET['cadenaT'];
-}else{
-    $cad="";
-    $error=true;
+    if ($cad=" "){
+        $error=true;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -23,7 +24,7 @@ if (isset($_GET['cadenaT'])){
                 <p>No has escrito texto, vuelve a intentarlo</p>
             <?php } ?>
             <form action="pract02.php" method="get">
-                Introduce texto: <input type="text" name="cadenaT" id="" value="<?=$cad?>"><br>
+                Introduce texto: <input type="text" name="cadenaT" id="" value="<?=$cad?>" placeholder="Introduzca algo de texto"><br>
                 <input type="submit" value="enviar">
             </form>
     </div>
@@ -32,9 +33,13 @@ if (isset($_GET['cadenaT'])){
             for ($i=0;$i<=strlen($cad);$i++){
                 if (in_array($cad[$i],["a","e","i","o","u"]) ){
                     $nV++;
+                }else{
+                    $nC++;
                 }
             }
-            echo "<p> vocales: $nV "
+            echo "<p> vocales: $nV </p><br><p> consonantes: $nC </p>";
+            $nV=0;
+            $nC=0;
         ?>
     </div>
 </body>
