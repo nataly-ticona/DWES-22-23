@@ -21,7 +21,7 @@ if (isset($_GET['cadenaT'])){
         <?php if ($error) { ?>
             <p>No has escrito texto, vuelve a intentarlo</p>
         <?php } ?>
-        <form action="ejer01.php" method="get">
+        <form action="pract01.php" method="get">
             Introduce texto: <input type="text" name="cadenaT" id="" value="<?=$cad?>"><br>
             <input type="submit" value="enviar">
         </form>

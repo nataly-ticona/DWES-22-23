@@ -28,13 +28,13 @@ if (isset($_GET['radio'])) {
         <?php if ($error) { ?>
             <h3>Eres un poco manazas. Mete un número</h3>
         <?php } ?>
-        <form action="ejer05.php" method="get">
+        <form action="pract05.php" method="get">
             Radio: <input type="number" step="0.001" name="radio" id="" value="<?=$r?>"><br>
             <input type="submit" value="Calcular">
         </form>
     </div>
     <div>
-        <p>Área: <?= (1*$r*$r*M_PI) ?></p>
+        <p>Área: <?= ($r*$r*M_PI) ?></p>
         <p>Longitud: <?= (2*$r*M_PI)?></p>
     </div>
 </body>
