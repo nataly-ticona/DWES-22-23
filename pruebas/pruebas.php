@@ -1,15 +1,18 @@
 <?php
-require('fpdf184/fpdf.php')
+ob_end_clean();
+require('fpdf184/fpdf.php');
+
+$fpdf=new fpdf();
+
+//añadimos una nueva pagina a fpdf
+$fpdf-> AddPage();
+
+//letra del pdf
+$fpdf->SetFont('Arial','B',10);
+
+//tamaño y texto
+$fpdf-> Cell(60,20,'Hola este el PDF');
+
+//lo generamos
+$fpdf->Output();
 ?> 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>

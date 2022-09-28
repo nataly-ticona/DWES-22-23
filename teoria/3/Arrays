@@ -1,0 +1,44 @@
+$array=[
+    1 => 0,
+    2 => 3,
+    3 => 4,
+]
+no va en orden , sino que toma los valores que 
+pongas en el array. El 0 no existe, comienza por el 1
+echo $array[1]
+
+--------------------------
+$array=[
+    "Hola" => [1=>"a", 2 =>"b"],
+    "k" => 3,
+    "ase" => 4,
+]
+Para poner el de "Hola"
+echo $array["Hola"][1];
+
+--------------------------
+$array=[
+    1 => 0,
+    "1" => 3,
+    1.5 => 4,
+    true => "dfs"
+]
+
+el segundo se come al 1 por ser string, el tercero al 
+segundo por ser un float y el ultimo por ser boolean
+
+para imprimir todo 
+var_dump($array);
+
+--------------------------
+Si no se pone nada toma los valores por defecto 
+$array=[0,3,4]
+se pondria: $array[0]=0
+
+--------------------------
+Multidimensional
+$array=[
+    "Hola" => [1=>"a", 2 =>"b"],
+    "k" => [4=>"a", 2 =>"b"],
+    "ase" => [1=>"a", 2 =>"b"]
+]
