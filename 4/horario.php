@@ -6,14 +6,7 @@ $empr="EIE";
 $diw="DIW";
 $daw="DAW";
 
-$color=[
-    "DWEC" => "c1",
-    "DWES" => "c2",
-    "DIW" => "c3",
-    "INGLES" => "c4",
-    "EIE" => "c5",
-    "DAW" => "c6"
-];
+
 $dias=["lunes","martes","miercoles","jueves","viernes" ];
 $horario=[
     [$dwec,$ingl,$diw,$empr,$dwes],
@@ -44,32 +37,35 @@ $horario=[
             ?>
         </tr>
         <?php
-        $i_aux=0;
+            //Creamos los tr
             for ($i=0; $i < count($horario);$i++) { 
                 echo "<tr>";
+                    //creamos los td
                     for ($j=0; $j < count($horario[$i]); $j++) { 
                         $n=1;
                         $i_aux=$i;
-                        while($horario[$i_aux][$j]==$horario[$i_aux+1][$j]){
+                        //bucle para ver cuantas veces se repite una asignatura en el siguiente tr
+                        while($horario[$i_aux][$j]==$horario[$i_aux+1][$j]) {
                             $n++;
                             $i_aux++;
                         }
-                        // if($horario[$i][$j]==$dwec){
-                        //     $estilo=$dwec;
-                        // }else  if($horario[$i][$j]==$ingl){
-                        //     $estilo=$ingl;
-                        // }else if($horario[$i][$j]==$dwes){
-                        //     $estilo=$dwes;  
-                        // }else  if($horario[$i][$j]==$empr){
-                        //     $estilo=$empr;
-                        // }else if($horario[$i][$j]==$diw){
-                        //     $estilo=$diw;
-                        // }else if($horario[$i][$j]==$daw){
-                        //     $estilo=$daw;
-                        // }else{
-                        //     $estilo="otro";
-                        // }
-                        if($horario[$i-1][$j]!=$horario[$i][$j] && $horario[$i][$j]!=null){   
+                        //colocar una etiqueta de estilo  
+                        if($horario[$i][$j]==$dwec){
+                            $estilo=$dwec;
+                        }else  if($horario[$i][$j]==$ingl){
+                            $estilo=$ingl;
+                        }else if($horario[$i][$j]==$dwes){
+                            $estilo=$dwes;  
+                        }else  if($horario[$i][$j]==$empr){
+                            $estilo=$empr;
+                        }else if($horario[$i][$j]==$diw){
+                            $estilo=$diw;
+                        }else if($horario[$i][$j]==$daw){
+                            $estilo=$daw;
+                        }else{
+                            $estilo="otro";
+                        }
+                        if($horario[$i-1][$j]!=$horario[$i][$j] && $horario[$i][$j]!=null){  
                             echo "<td class='$estilo' rowspan='$n'>". $horario[$i][$j] ."</td>";
                         }
                     } 
