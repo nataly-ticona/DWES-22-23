@@ -8,20 +8,56 @@
 </head>
 <body>
     <div id="walk">
-        <p>Array_walk</p>
+        <p>Enunciado 1</p>
         <?php
-        
+       $usuarios = [
+        "jorge" => "1234",
+        "amparo" => "admin",
+        "mary" => ""];
+       array_walk($usuarios,function($u, $k){
+        echo "$k:$u ";
+       });
         ?>
     </div>
     <div>
-        <p></p>
-    <?php
-    //para crear contraseñas
-    echo password_hash("1234",PASSWORD_DEFAULT);
-    //Verifica una contraseña. Te devuelve un 1 si es true 
-    echo password_verify("1234",'$2y$10$41e1Ydelrg89ytlfp069wOsM9mUNBbTaYWR439u/jxifxjs5Lt7IW');
-    ?>
+        <p>Enunciado 2</p>
+        <?php
+        function mapeo($k){
+            return hash('ripemd160',$k) ;
+        }
+        //enviamos las keys del array y luego los elementos del array
+        $e2=array_map('mapeo',$usuarios);
+        echo "<pre>";
+        print_r($e2);
+        echo "</pre>";
+        ?>
     </div>
-    
+    <div>
+        <p>Enunciado 3</p>
+        <?php
+        function mapeo2($k){
+            if($k==""){
+                $k="tmp2022";
+            }
+            return hash('ripemd160',$k);
+        }
+        //enviamos las keys del array y luego los elementos del array
+        $e3=array_map('mapeo2',$usuarios);
+        echo "<pre>";
+        print_r($e3);
+        echo "</pre>";
+        ?>
+    </div>
+    <div>
+        <p>Enunciado 4</p> <!--revisar-->
+        <?php
+        $nuevos=[
+            2 => "si"
+        ];
+        
+        $e4=array_replace($usuarios,$nuevos);
+        print_r($e4);
+        ?>
+    </div>
 </body>
 </html>
