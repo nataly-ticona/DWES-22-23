@@ -1,7 +1,11 @@
 Estructuras de control:
-    Alternativas
-    Repetitivas
-    Salida de HTML
+    Alternativas (if)
+    Repetitivas (bucles)
+    Salida de HTML (for each)
+        - cuando le das el valor & en for each el array cambia sus valores porque almacena el dato 
+        for each($array as &$n){
+            $n=$n*2;
+        }
 Funciones
 ¿Cómo estructurar un proyecto?
 Objetos

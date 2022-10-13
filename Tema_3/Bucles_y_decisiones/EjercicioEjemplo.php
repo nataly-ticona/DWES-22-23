@@ -20,6 +20,7 @@ for ($i=0; $i < sizeof($numeros) ; $i++) {
 //2. Crea una web similar a la anterior pero que pare al finalizar la cadena o al encontrar el carácter 'a', tanto minúscula como mayúscula. Usa While
 
 //3. Crea una página web que escriba span con números aleatorios entre 0 y 100, el proceso parará cuando el número acabe en 17 o sea primo.
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +46,9 @@ for ($i=0; $i < sizeof($numeros) ; $i++) {
     ?>
     <p>2. Parar la cadena si hay 'a'</p>
     <?php
+        $cadena1="nataly";
         $i=0;
-        while(substr($cadena1,$i,1)!='a'|| substr($cadena1,$i,1)!='A'){
+        while(substr($cadena1,$i,1)!='a' && substr($cadena1,$i,1)!='A'){
             echo "<h4>" . substr($cadena1,$i,1) . "</h4>";
             $i++;
         }
