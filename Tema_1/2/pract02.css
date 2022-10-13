@@ -1,0 +1,73 @@
+body{
+    background-color: #E7D1EA ;
+    opacity: 80%;
+    
+}
+/*CAJA*/
+body>#caja{
+    margin: auto;
+    height: auto;
+    width: 50%;
+    background-color: antiquewhite;
+}
+
+
+/*FORMULARIO*/
+#d1{
+    margin: auto;
+    height: 150px;
+    width: 75%;
+}
+
+#d1>form{
+    padding:20px ;
+    text-align: center;
+}
+#d1>form>input { 
+    margin: 5px;
+}
+
+#d1>form>input[type="submit"]{
+    background-color: #A991B2;
+    padding:2px;
+    border-radius: 5px;
+    border-color: white;
+}
+
+#d1>form>input[type="text"]{
+    width: 75%;
+    background-color: #EAE7EA;
+    border-radius: 5px;
+    border-color: none;
+}
+
+#d1>form>input[type="text"]:focus{
+outline-color: blue;
+}
+
+/*RESULTADOS*/
+#d2{
+    margin: auto;
+    height: 150px;
+    width: 75%;
+}
+#d2>ul>li{
+    margin:0 auto;
+    margin-bottom: 2px;
+    width: 60%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #988295;
+    list-style: none; 
+}
+#d2>ul>li:hover{
+    border: none;
+    background-color: #F7C8F0;
+}
+
+#alerta{
+    border-radius: 5px;
+    padding: 5px;
+    background-color: red;
+    color: white;
+}

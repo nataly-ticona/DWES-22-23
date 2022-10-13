@@ -1,0 +1,43 @@
+table{
+    margin: 0 auto;
+    border-collapse: collapse;
+
+}
+tr{
+    height: 40px;
+    
+}
+td{
+    text-align: center;
+    border: 2px solid purple;
+    width: 70px;
+}
+
+.dias{
+    background-color: lightsalmon;
+}
+.DWES{
+    background-color: rgb(238, 140, 140);
+}
+.INGLES{
+    background-color: rgb(126, 126, 233);
+}
+.EIE{
+    background-color: rgb(250, 250, 152);
+}
+.DAW{
+    background-color: rgb(235, 194, 118);
+}
+.DWEC{
+    background-color: rgb(147, 215, 146);
+}
+.DIW{
+    background-color: rgb(220, 173, 181);
+}
+.otro{
+    background-color: rgb(188, 141, 213);
+}
+
+:default{
+    background-color: red;
+}

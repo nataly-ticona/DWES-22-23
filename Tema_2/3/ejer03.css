@@ -1,0 +1,35 @@
+
+body{
+background-color: #c5b2ce;
+}
+
+#contenedor{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0 auto;
+    width: 50%;
+    background-color: rgb(176, 123, 187);
+    border-radius: 10px;;
+}
+
+form{
+    margin:0 auto;
+    width: 75%;
+}
+input{
+    margin:5px;
+    border-radius: 5px;
+}
+
+input[type="submit"]{
+    padding:5px;
+}
+
+*::selection {
+    background-color: #c444d4;
+    color: #ffffff;
+}
+ 
+*::-moz-selection {
+    background-color:#ab84bd;
+    color: #07667e;
+}
