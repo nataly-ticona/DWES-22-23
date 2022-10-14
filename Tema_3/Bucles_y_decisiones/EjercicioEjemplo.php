@@ -60,7 +60,7 @@ for ($i=0; $i < sizeof($numeros) ; $i++) {
         do{
             $n=rand(0,100);
             echo "<span>". $n . "<span> ";
-        }while($n!=17 && $n/$n!=0);
+        }while($n!=17 && $n%$n==0);
 
     ?>
 </body>
