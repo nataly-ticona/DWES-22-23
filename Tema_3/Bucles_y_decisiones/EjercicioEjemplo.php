@@ -18,9 +18,9 @@ for ($i=0; $i < sizeof($numeros) ; $i++) {
 //1.Crea una página web que recorra una variable de tipo cadena accediendo a cada letra y escriba cada una en un h4. Usa for
     $cadena1="Casa";
 //2. Crea una web similar a la anterior pero que pare al finalizar la cadena o al encontrar el carácter 'a', tanto minúscula como mayúscula. Usa While
-
+    $cadena2="Nataly";
 //3. Crea una página web que escriba span con números aleatorios entre 0 y 100, el proceso parará cuando el número acabe en 17 o sea primo.
-    
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,14 +46,22 @@ for ($i=0; $i < sizeof($numeros) ; $i++) {
     ?>
     <p>2. Parar la cadena si hay 'a'</p>
     <?php
-        $cadena1="nataly";
+        $cadena2="nataly";
         $i=0;
-        while(substr($cadena1,$i,1)!='a' && substr($cadena1,$i,1)!='A'){
+        while(substr($cadena2,$i,1)!='a' && substr($cadena2,$i,1)!='A'){
             echo "<h4>" . substr($cadena1,$i,1) . "</h4>";
             $i++;
         }
             
         
+    ?>
+    <p>3. Parar en 17 o primo</p>
+    <?php
+        do{
+            $n=rand(0,100);
+            echo "<span>". $n . "<span> ";
+        }while($n!=17 && $n/$n!=0);
+
     ?>
 </body>
 </html>
