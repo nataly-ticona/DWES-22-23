@@ -1,7 +1,8 @@
 <?php
 
     function formulario($valor,$clave){
-        echo "$clave <input name='$clave'  value='$valor'> <br>";
+        $tipo=(is_int($value))?'number':'text'; //es un if que pregunta si es numero
+        echo "$clave <input name='$clave'  value='$valor' type='$tipo'> <br>";    
     }
     
     $yo = [
