@@ -14,7 +14,12 @@
                 $cA++;
             }
         }
-        echo $cS. $cN.$cA;
+        $total=[
+            "String" => $cS,
+            "int" => $cN,
+            "arrays"=> $cA
+        ];
+        print_r($total);
     }
 ?>
 <!DOCTYPE html>

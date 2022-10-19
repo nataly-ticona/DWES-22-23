@@ -7,8 +7,26 @@ aleatorios entre 0 y 20.
 echo concatena(" ", "Hola", "mundo", "!"); echo concatena(".", "Esto", "son", "puntos");
 */
 
-function concatena($separador,$cad1,$cad2,$cad3){
-    echo $cad1 . $separador . $cad2 . $separador . $cad3 ; 
+function concatena(string $separador, string ...$cadena ):string { //que devuelva un
+    $salida="" ;
+    foreach($cadena as $k => $cadena ){
+        $salida .= (($k==0)?"":$separador).$cadena; //va concatenando todo el rato
+    } 
+    return $salida;
+};
+
+function concatena2(string $separador, string ...$cadena):string{
+    $salida="" ;
+    $primero=true;
+    foreach($cadena as $cadena ){
+        if ($primero) {
+            $primero=false;
+            $salida=$cadena;
+        }else{
+            $salida .= $separador.$cadena; //va concatenando todo el rato
+        }
+    } 
+    return $salida;
 };
 ?>
 <!DOCTYPE html>
