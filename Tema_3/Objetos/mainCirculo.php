@@ -1,15 +1,18 @@
 <?php 
 //se usa required para objeto, para llamarlo
-require "./Circulo.php";
+require './Circulo.php';
     //instanciamos un nuevo objeto
     $a=new Circulo();
     //mostramos un dato
-    echo $a->getRadio();
+        //echo $a->getRadio();
     //ponemos un valor al objeto $a y luego lo mostramos
     $a->setRadio(5);
     echo " segundo valor:".$a->getRadio();
     //mostramos la constante PI y te lo redondea con 2 cifras
     echo "\n".round($a->getPI(),2);
+
+    //calcular el area
+    echo " el area es: " . $a->getArea();
 ?>
 <!DOCTYPE html>
 <html lang="en">
