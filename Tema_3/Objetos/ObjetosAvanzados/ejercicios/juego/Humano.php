@@ -1,4 +1,6 @@
 <?php
+namespace juego;
+use \juego\Posicion;
 
 class Humano implements JuegoInterfaz{
     public function atacar():string{
@@ -7,6 +9,6 @@ class Humano implements JuegoInterfaz{
     public function defender():string{
         return 'defender';
     }
-    use Posicion;
+    use \juego\Posicion;
 }
 ?>

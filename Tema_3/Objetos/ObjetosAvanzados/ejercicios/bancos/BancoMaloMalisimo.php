@@ -1,4 +1,5 @@
 <?php
+namespace bancos;
 class BancoMaloMalisimo implements PlataformaPago{
     public function estableceConexión():bool{
         echo 'establece conexion BancoMaloMalisimo ';

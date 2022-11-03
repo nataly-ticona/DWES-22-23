@@ -1,4 +1,6 @@
 <?php
+namespace juego;
+
 trait Descripcion{
     private $des;
     public function getDescripcion(){

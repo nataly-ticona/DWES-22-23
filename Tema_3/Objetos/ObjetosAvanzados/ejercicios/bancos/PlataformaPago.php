@@ -1,4 +1,5 @@
 <?php
+namespace bancos;
     interface PlataformaPago{
         public function estableceConexión():bool;
         public function compruebaSeguridad():bool;

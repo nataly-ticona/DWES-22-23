@@ -1,4 +1,6 @@
 <?php
+namespace singleton;
+
 class Config{
     public $nombre;
 

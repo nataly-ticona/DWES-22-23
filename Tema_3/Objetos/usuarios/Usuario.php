@@ -3,7 +3,7 @@ class Usuario{
     //cada vez que el jugador gane 6 gana 1 nivel
     const NMAX=6; //el maximo de partidas que se puede ganar para subir nivel
     const NMIN=-6; //el max de partidas perdidas para perder un nivel
-    static $historialPart=6; //el numero que tendra el usuario del historial
+    protected $historialPart=6; //el numero que tendra el usuario del historial
 
     private $nombre;
     private $apellidos;
@@ -12,12 +12,12 @@ class Usuario{
     private $historial; //guardar cada partido
     
     //constructor
-    public function ___contruct(string $nombre,string $apellidos, string $deporte, int $nivel, int $historial){
+    public function ___contruct(string $nombre,string $apellidos, string $deporte, int $nivel = 0, int $historial=0){
         $this->nombre=$nombre;
         $this->apellidos=$apellidos;
         $this->deporte=$deporte;
-        $this->nivel=0;
-        $this->historial=0;
+        $this->nivel=$nivel;
+        $this->historial=$historial;
     }
 
     //getters y setters
@@ -36,25 +36,30 @@ class Usuario{
         switch (strtolower($resultado)) {
             case 'victoria':
                 $this->historial++;
+                if ($this->historial<0) {
+                    $this->historial=0;
+                }
                 echo "Gana ". $this->nombre;
-                break;
             case 'derrota':
                 $this->historial--;
+                if ($this->historial>0) {
+                    $this->historial=0;
+                }
                 echo "Pierde ". $this->nombre;
-                break;
             case 'empate':
                 
                 break;
         }
-        if ($this->nivel < self::NMAX && $this->historico == self::$historialPart) {
+        if ($this->nivel < self::NMAX && $this->historial == self::$historialPart) {
             $this->nivel++;
             $this->historial = 0;
             echo $this->nombre." sube a nivel ".$this->nivel."<br>";
-        } elseif($this->nivel > self::NMIN && $this->historico == (self::$historialPart) * -1) {
+        } elseif($this->nivel > self::NMIN && $this->historial == (self::$historialPart) * -1) {
             $this->nivel--;
             $this->historial = 0;
             echo $this->nombre." baja a nivel ".$this->nivel."<br>";
         }
+
 
     }
     public function imprimirInformacion() { 

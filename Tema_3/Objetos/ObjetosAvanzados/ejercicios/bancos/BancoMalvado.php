@@ -1,15 +1,18 @@
 <?php
-class BitCoinConan implements PlataformaPago{
+namespace bancos;
+
+class BancoMalvado implements PlataformaPago{
+        
     public function estableceConexión():bool{
-        echo 'establece conexion BitCoinConan';
+        echo 'establece conexion BancoMalvado ';
         return true;
     }
     public function compruebaSeguridad():bool{
-        echo 'conexion segura BitCoinConan';
+        echo 'conexion segura BancoMalvado ';
         return true;
     }
     public function pagar(string $cuenta, int $cantidad){
-        echo 'Pago realizado BitCoinConan';
+        echo 'Pago realizado BancoMalvado ';
     }
 }
 ?>

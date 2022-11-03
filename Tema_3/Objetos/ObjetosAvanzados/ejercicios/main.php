@@ -1,24 +1,32 @@
 <?php
+// para archivos en una misma carpeta
+// spl_autoload_register(function ($class) {
+//     $classPath = "./";
+//     require("$classPath${class}.php");
+// });
+
+
+//para archivos en distintas carpetas
 spl_autoload_register(function ($class) {
     $classPath = "./";
-    echo "Autoload llamado";
-    require("$classPath${class}.php");
+    $file = str_replace('\\', '/', $class);
+    require("$classPath${file}.php");
 });
 
 //  require ('./singleton.php');
 //  require ('./interfaz.php');
 //  require ('./JuegoInterfaz.php');
 
-$prueba2=Config::singleton();
-$prueba3= new BancoMalvado();
-$prueba4= new BitCoinConan();
-$prueba5= new BancoMaloMalisimo();
-$mago1= new MagoBlanco();
+$prueba2= \singleton\Config::singleton();
+$prueba3= new \bancos\BancoMalvado();
+$prueba4= new \bancos\BitCoinConan();
+$prueba5= new \bancos\BancoMaloMalisimo();
+$mago1= new \juego\MagoBlanco();
 
 //polimorfismo: crear un objeto aletorio y usar los metodos sin tener que saber cual es el objeto
-$clases=[new BancoMalvado(), new BitCoinConan(), new BancoMaloMalisimo()];
+$clases=[new \bancos\BancoMalvado(), new \bancos\BitCoinConan(), new \bancos\BancoMaloMalisimo()];
 
-$prueba6= $clases[rand(0,2)];
+$prueba6=$clases[rand(0,2)];
 
 ?>
 <!DOCTYPE html>
