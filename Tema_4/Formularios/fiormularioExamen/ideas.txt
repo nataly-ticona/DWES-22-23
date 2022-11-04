@@ -1,0 +1,31 @@
+FORMULARIO
+registro (controlar el ctrl+c )
+- tipo de usuario (empresa, personal o para hijx)
+Datos generales de Usuario
+  - nombre
+  - apellido
+  - correo
+  - name user  
+  - passwrd (pasarlo a hash)
+  - confirmar el passwrd (opcional)
+
+  login 
+  - name user or correo (validar si es correo o name user)
+  - passwrd
+
+  FOMULARIO PERSONAL
+  - Telefono 
+  - Genero 
+  - fecha de nacimiento 
+  - otros (text area)
+  - checkbox (estudios, aficiones, trabajo)
+  Se puede hacer una clase abstracta con los datos o traits para los datos que son repetidos en otras clases (ejmeplo de juegos)
+
+Formulario empresa
+  - Datos de usuario
+  siguiente paso
+  - Cif de empresa
+  - Actividad (descripcion)
+  - direccion
+  - tipo de empresa
+  - telefono

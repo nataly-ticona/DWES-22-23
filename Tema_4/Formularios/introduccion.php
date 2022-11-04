@@ -36,7 +36,7 @@ switch (substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2)) {
     <title>si</title>
 </head>
 <body>
-    <!--para guardar los datos de la persona y obetener un post, si se quiere uhn get poner en el action todo menos /index.php-->
+    <!--para guardar los datos de la persona y obetener un post solo se pone el localhost:8000, si se quiere un get poner en el action todo menos /index.php-->
     <form action="http://localhost:8000/formularios.php" method=""> <!--ejecutamos en el terminal nc -l 8000 -->
         Nombre <input type="text" name="nombre" id="nombre">
         <br>
