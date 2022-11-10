@@ -30,7 +30,7 @@
             ?>
             </select>
             <input type="number" name="anio" id="anio" min="1900" max="2004" size="2" placeholder="año">
-
+            <br>
             <input type="submit" value="enviar">
         </form>
     </fieldset>
