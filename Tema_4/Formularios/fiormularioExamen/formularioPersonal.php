@@ -10,6 +10,17 @@
     <fieldset>
         <legend>Datos personales</legend>
         <form action="" method="post">
+        <label for="nombre">Nombre: </label>
+            
+            <input type="text" name="nombre" id="nombre" placeholder="Introduce tu nombre"><br>
+            <label for="apellido">apellido</label>
+
+            <input type="text" name="apellido" id="apellido" placeholder="Introduce tu apellido"><br>
+            <label for="correo">Correo: </label>
+            
+            <input type="email" name="correo" id="correo" placeholder="Introduce tu correo electrónico"><br>
+            <label for="contrasenia">Contraseña: </label>
+            
             <label for="telefono"> Telefono: </label>
             <input type="tel" name="telefono" id="telefono" size="9" pattern="[0-9]{9}" placeholder="ej: 012345678">
             <br>
