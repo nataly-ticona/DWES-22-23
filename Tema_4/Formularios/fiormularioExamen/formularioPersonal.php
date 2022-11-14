@@ -1,5 +1,13 @@
+<?php
+//para archivos en una misma carpeta
+ spl_autoload_register(function ($class) {
+     $classPath = "./";
+     require("$classPath${class}.php");
+ });
+
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +15,12 @@
     <title>Personal</title>
 </head>
 <body>
-    <fieldset>
+<fieldset>
         <legend>Datos personales</legend>
         <form action="" method="post">
-        <label for="nombre">Nombre: </label>
-            
+            <label for="nombre">Nombre: </label>
             <input type="text" name="nombre" id="nombre" placeholder="Introduce tu nombre"><br>
+            
             <label for="apellido">apellido</label>
             <input type="text" name="apellido" id="apellido" placeholder="Introduce tu apellido"><br>
             
@@ -21,7 +29,7 @@
             
             <label for="contrasenia">Contraseña: </label>
             <input type="password" name="psswd" id="psswd">
-
+            <br>
             <label for="telefono"> Telefono: </label>
             <input type="tel" name="telefono" id="telefono" size="9" pattern="[0-9]{9}" placeholder="ej: 012345678">
             <br>
