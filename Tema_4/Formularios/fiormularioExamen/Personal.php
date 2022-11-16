@@ -93,10 +93,8 @@ class Personal extends Usuario{
 
     //esValido
     function esValido(){
-        /*$data= file_get_contents("usuarios.csv");
-        $line=explode("\n", $data);
-        $fields=explode(";",$line);
-            echo "<td> $fields[0]<td>";*/
+        
+        
         if(!isset($this->errores)){
             //guardado
             file_put_contents("usuarios.csv","".parent::getNombre().";".parent::getApellido().";".parent::getCorreo().";".parent::getPsswd().";$this->telefono;$this->genero;$this->dia;$this->mes;$this->anio;\n",FILE_APPEND);

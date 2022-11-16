@@ -27,21 +27,35 @@ $p=new Personal($_POST);
         width: 50%;
         margin: 0 auto;
     }
-    .input{
+    label{
         margin-left: 10px;
-        
+        font-weight: bold;
     }
     input, select {
-        margin-left: 5px;
+        margin-bottom: 10px;
         text-align: center;
+        border-radius: 5px;
+    }
+    select{
+        background-color: white;
     }
     input[type=text], input[type=number] ,input[type=tel], input[type=email]{
         color: green;
     }
+    input[type=number]{
+        width: 55px;
+    }
+
     .error{
+        font-size: 13px;
         padding: 0px;
         color: red;
-        border: 1px solid white;
+    }
+    input[type=submit]{
+        background-color: white;
+        border: 0px;
+        border-radius: 4px ;
+        padding: 4px;
     }
     
 </style>
@@ -58,7 +72,7 @@ $p=new Personal($_POST);
                     $p->pintarInputGeneral('text','nombre', $_POST['nombre']);
                     $p->pintarInputGeneral('text','apellido', $_POST['apellido']);
                     $p->pintarInputGeneral('email','correo',$_POST['correo']);
-                    $p->pintarInputGeneral('password','psswd', $_POST['pswwd']);
+                    $p->pintarInputGeneral('password','psswd');
                     $p->pintarInputGeneral('tel','telefono', $_POST['telefono']);
                     $p->pintarInputRadio('genero','mujer','hombre');
                 ?>

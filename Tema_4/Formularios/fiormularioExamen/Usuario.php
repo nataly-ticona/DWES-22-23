@@ -51,15 +51,32 @@ class Usuario{
         }else{//convertimos la contraseña en un hash para no saber cual es
             $this->psswd = password_hash($this->psswd,PASSWORD_DEFAULT);
         }
+
+        $data = file_get_contents("usuarios.csv");
+        $lines = explode("\n", $data);
+    
+        $correos=[];
+    
+        foreach ($lines as $n) {
+            $fields = explode(";" ,$n);
+            array_push($correos, $fields[2]);
+        }
+        for ($i=0; $i < sizeof($correos) ; $i++) { 
+            if ($correos[$i]==$this->correo) {
+                $this->errores['correo']='el correo ya esta en uso';
+            } 
+        }
         return $this->errores;
     }
 
     //validar datos no repetidos como el correo para mandarlos al csv 
     function esValido(){
-        if(isset($this->errores['nombre'])){echo $this->errores['nombre']. '<br>';}
-            if(isset($this->errores['apellido'])){echo $this->errores['apellido'] . '<br>';}
-            if(isset($this->errores['correo'])){echo $this->errores['correo']. '<br>';}
-            if(isset($this->errores['psswd'])){echo $this->errores['psswd']. '<br>';}
+        
+        print_r($this->correo);
+        if(isset($this->errores['nombre'])){echo '<p class="error">'.$this->errores['nombre']. '</p>';}
+            if(isset($this->errores['apellido'])){echo '<p class="error">'.$this->errores['apellido'] . '</p>';}
+            if(isset($this->errores['correo'])){echo '<p class="error">'.$this->errores['correo']. '</p>';}
+            if(isset($this->errores['psswd'])){echo '<p class="error">'.$this->errores['psswd']. '</p>';}
         
     }
 }
