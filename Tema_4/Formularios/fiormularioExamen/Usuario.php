@@ -56,7 +56,10 @@ class Usuario{
 
     //validar datos no repetidos como el correo para mandarlos al csv 
     function esValido(){
-        
+        if(isset($this->errores['nombre'])){echo $this->errores['nombre']. '<br>';}
+            if(isset($this->errores['apellido'])){echo $this->errores['apellido'] . '<br>';}
+            if(isset($this->errores['correo'])){echo $this->errores['correo']. '<br>';}
+            if(isset($this->errores['psswd'])){echo $this->errores['psswd']. '<br>';}
         
     }
 }

@@ -33,43 +33,30 @@ class Personal extends Usuario{
 
     
     //pintar inputs 
-    function pintarInputGeneral($tipo,$nombre){
+    function pintarInputGeneral($tipo,$nombre, $valor=''){
         echo "<label for='$nombre'>$nombre</label>
-              <input type='$tipo' name='$nombre' id='$nombre'> ";
+              <input type='$tipo' name='$nombre' id='$nombre' value='$valor'> ";
         echo "<br>";      
-    //salida de errores en caso de que haya un algo dentro de erorres 
-        /*if (isset($this->errores[$nombre])) {
-            echo "<div class='error'><p>".$this->errores[$nombre]."</p></div>";
-        }*/
-        
-        
     }
-    function pintarInputRadio($nombre,  ...$opciones){
+    function pintarInputRadio($nombre,  ...$opciones,){
         echo "<label for='$nombre'>$nombre</label>";
         foreach ($opciones as $n ) {
-            echo "<input type='radio' name='$nombre' id='$n' >$n";
+            echo "<input type='radio' name='$nombre' id='$n'>$n";
         }
         echo "<br>";
-        /*if (isset($this->errores[$nombre])) {
-            echo "<div class='error'><p>".$this->errores[$nombre]."</p></div>";
-        }*/
+        
         
     }
     function pintarInputSelect($nombre, ...$opciones){
-        
-        echo "<label for='$nombre'></label><br>
+        echo "<label for='$nombre'>$nombre</label>
         <select name='$nombre' id='$nombre'>";
-        
-        array_walk($opciones,function($op,$k,$data){ //la k es solo para que funcione data, data es lo que ha puesto el usuario
-            $sel = ($op==$data)?"selected":"";
+
+        array_walk($opciones,function($op,$k){ 
+            //la k es solo para que funcione data, data es lo que ha puesto el usuario
+            $sel=($op==$this->mes)?"selected='$this->mes'":"";
             echo "<option value='$op' $sel>$op</option>";
         },$this->mes);
         echo "</select><br>";
-        /*if (isset($this->errores[$nombre])) {
-            echo "<div class='error'><p>".$this->errores[$nombre]."</p></div>";
-        }*/
-        
-
     }
 
     //validar datos de la clase
@@ -77,8 +64,8 @@ class Personal extends Usuario{
         parent::validar(); //sobreescribir metodo
         if(isset($this->telefono) && $this->telefono == ""){
             $this->errores['telefono']='telefono esta vacio';
-        }else if(preg_match("/[69]{1}[0-9]{8}$/",$this->telefono)){
-
+        }else if(!preg_match("/[69]{1}[0-9]{8}$/",$this->telefono)){
+            $this->errores['telefono']='El telefono tiene que empezar por 6 o 9 y luego 8 numeros';
         }
         if(isset($this->genero) && $this->genero==""){
             $this->errores['genero']='selecciona un genero';
@@ -104,8 +91,12 @@ class Personal extends Usuario{
         return $this->errores;
     }
 
-    //esValido: validar los datos como tal, una vez no son espacios en blanco se vuelven a este metodo para convertir
+    //esValido
     function esValido(){
+        /*        $data= file_get_contents("usuarios.csv");
+        $line=explode("\n", $data);
+        $fields=explode(";",$line);
+            echo "<td> $fields[0]<td>";*/
         if(!isset($this->errores)){
             //guardado
             file_put_contents("usuarios.csv","".parent::getNombre().";".parent::getApellido().";".parent::getCorreo().";".parent::getPsswd().";$this->telefono;$this->genero;$this->dia;$this->mes;$this->anio;\n",FILE_APPEND);
@@ -114,15 +105,12 @@ class Personal extends Usuario{
             header("Location: listado.php");
             exit();
         }else{
-            if(isset($this->errores['nombre'])){echo $this->errores['nombre']. '<br>';}
-            if(isset($this->errores['apellido'])){echo $this->errores['apellido'] . '<br>';}
-            if(isset($this->errores['correo'])){echo $this->errores['correo']. '<br>';}
-            if(isset($this->errores['psswd'])){echo $this->errores['psswd']. '<br>';}
-            if(isset($this->errores['telefono'])){echo $this->errores['telefono']. '<br>';}
-            if(isset($this->errores['telefono'])){echo $this->errores['telefono']. '<br>';}
-            if(isset($this->errores['dia'])){echo $this->errores['dia']. '<br>';}
-            if(isset($this->errores['mes'])){echo $this->errores['mes']. '<br>';}
-            if(isset($this->errores['anio'])){echo $this->errores['anio']. '<br>';}
+            parent::esValido();
+            if(isset($this->errores['telefono'])){echo '<p>'.$this->errores['telefono'].'</p>';}
+            if(isset($this->errores['genero'])){echo '<p>'. $this->errores['genero']. '</p>';}
+            if(isset($this->errores['dia'])){echo '<p>'. $this->errores['dia']. '</p>';}
+            if(isset($this->errores['mes'])){echo '<p>'.$this->errores['mes']. '</p>';}
+            if(isset($this->errores['anio'])){echo '<p>'.$this->errores['anio']. '</p>';}
         }
 
     }

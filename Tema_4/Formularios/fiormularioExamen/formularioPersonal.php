@@ -39,22 +39,22 @@ $p=new Personal($_POST);
         <legend>Datos personales</legend>
         <form action="" method="post">
                 <?php
-                
-                    $p->pintarInputGeneral('text','nombre');
-                    $p->pintarInputGeneral('text','apellido');
-                    $p->pintarInputGeneral('email','correo');
-                    $p->pintarInputGeneral('password','psswd');
-                    $p->pintarInputGeneral('tel','telefono');
+                    $p->pintarInputGeneral('text','nombre', $_POST['nombre']);
+                    $p->pintarInputGeneral('text','apellido', $_POST['apellido']);
+                    $p->pintarInputGeneral('email','correo',$_POST['correo']);
+                    $p->pintarInputGeneral('password','psswd', $_POST['pswwd']);
+                    $p->pintarInputGeneral('tel','telefono', $_POST['telefono']);
                     $p->pintarInputRadio('genero','mujer','hombre');
                 ?>
             <div id="fechaN">
                 <?php
                  $p->pintarInputGeneral('number','dia');
-                 $p->pintarInputSelect('meses','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
+                 $p->pintarInputSelect('mes','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
                  $p->pintarInputGeneral('number','anio');
+                $p->getGenero();
                $p->validar();
                $p->esValido();
-               $p->getNombre();
+               
                 ?>
             </div>
             <input type="submit" value="enviar">
