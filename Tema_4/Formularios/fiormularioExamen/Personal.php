@@ -1,7 +1,7 @@
 <?php 
 class Personal extends Usuario{
     use Telefono;
-    private $genero="";
+    private $genero;
     use Dia;
     use Mes;
     use Anio;
@@ -35,14 +35,22 @@ class Personal extends Usuario{
     //pintar inputs 
     function pintarInputGeneral($tipo,$nombre){
         echo "<label for='$nombre'>$nombre</label>
-              <input type='$tipo' name='$nombre' id='$nombre'>";
+              <input type='$tipo' name='$nombre' id='$nombre'> ";
+    //salida de errores en caso de que haya un algo dentro de erorres 
+        /*if (isset($this->errores[$nombre])) {
+            echo "<div class='error'><p>".$this->errores[$nombre]."</p></div>";
+        }*/
         echo "<br>";
+        
     }
     function pintarInputRadio($nombre,  ...$opciones){
         echo "<label for='$nombre'>$nombre</label>";
         foreach ($opciones as $n ) {
-            echo "<input type='radio' name='$nombre' id='$n'>$n";
+            echo "<input type='radio' name='$nombre' id='$n' >$n";
         }
+        /*if (isset($this->errores[$nombre])) {
+            echo "<div class='error'><p>".$this->errores[$nombre]."</p></div>";
+        }*/
         echo "<br>";
     }
     function pintarInputSelect($nombre, ...$opciones){
@@ -54,46 +62,59 @@ class Personal extends Usuario{
             $sel = ($op==$data)?"selected":"";
             echo "<option value='$op' $sel>$op</option>";
         },$this->mes);
-        echo "</select><br>";
+        /*if (isset($this->errores[$nombre])) {
+            echo "<div class='error'><p>".$this->errores[$nombre]."</p></div>";
+        }*/
+        echo "</select><span></span><br>";
 
     }
 
     //validar datos de la clase
     function validar(){
         parent::validar(); //sobreescribir metodo
-        if(!isset($this->telefono) && $this->telefono == ""){
-            $errores['telefono']='no puedes estar vacio';}
-    
-        if(isset($this->genero) && $this->genero=="off"){
-            $errores['genero']='no puedes estar vacio';
+        if(isset($this->telefono) && $this->telefono == ""){
+            $this->errores['telefono']='no puedes estar vacio';
+        }else if(preg_match("/[69]{1}[0-9]{8}$/",$this->telefono)){
+
         }
-    
-        if(isset($this->dia) && $this->dia== ""){
-            $errores['dia']='no puedes estar vacio';
+        if(isset($this->genero) && $this->genero==""){
+            $this->errores['genero']='selecciona un genero';
         }
 
+        if(isset($this->dia) && $this->dia== ""){
+            $this->errores['dia']='no puedes estar vacio';
+        }else if($this->dia<1 || $this->dia>31){
+            $this->errores['dia']='la fecha tiene que ser entre 1 y 31';
+        }else if($this->mes=='febrero' && $this->dia>28)
+            $this->errores['dia']='febrero no tiene tantos dias';
+
         if(isset($this->mes) && $this->mes== ""){
-            $errores['mes']='no puedes estar vacio';
+            $this->errores['mes']='no puedes estar vacio';
         }
 
         if(isset($this->anio) && $this->anio== ""){
-            $errores['anio']='no puedes estar vacio';
+            $this->errores['anio']='anio esta vacio';
+        }else if($this->anio<1940 || $this->anio>2004){
+            $this->errores['anio']='año no correcto';
         }
-        return $errores;
+        
+        return $this->errores;
     }
 
     //esValido: validar los datos como tal, una vez no son espacios en blanco se vuelven a este metodo para convertir
     function esValido(){
-        parent::esValido();
-        $erroresMatch=[];
-        if(!preg_match("/[A-Z]{1}[a-z]{9}/",$this->telefono)){ 
-            //puede contener todas las letras  
-            $erroresMatch['telefono']='no puedes estar vacio';
+        if(!isset($this->errores)){
+            //guardado
+            file_put_contents("usuarios.csv","".parent::getNombre().";".parent::getApellido().";".parent::getCorreo().";".parent::getPsswd().";$this->telefono;$this->genero;$this->dia;$this->mes;$this->anio;\n",FILE_APPEND);
+            
+            //redirect, el header no puede escribir nada antesd e la cabecera (como las cookies)
+            header("Location: listado.php");
+            exit();
+        }else{
+            print_r($this->errores);
         }
 
     }
-    //pintar errores: en cada error hay que pintar una p con el tipo de error, ponerlo en el php como en el ejemplo,.
-    //guardar
     
 }
 ?>

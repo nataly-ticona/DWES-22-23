@@ -1,6 +1,7 @@
 <?php
 
 class Usuario{
+    public static $errores=[];
     private $nombre;
     private $apellido;
     private $correo;
@@ -25,30 +26,38 @@ class Usuario{
     function getPsswd(){return $this->psswd;}
     function setPsswd($psswd){$this->psswd=$psswd;}
 
-    //validar los datos
+    //validar los datos y los datos del formularios 
     public function validar(){
-        $errores=[];
         
         if(isset($this->nombre) && $this->nombre == ""){
-            $errores['nombre']='nombre vacio';
-        }
-        if(isset($this->apellido) && $this->apellido == ""){
-            $errores['apellido']='apellido vacio';
-        }
-        if(isset($this->correo) && $this->correo == ""){
-            $errores['psswd']='correo vacio';
-        }
-        if(isset($this->psswd) && $this->psswd == ""){
-            $errores['psswd']='contraseña vacia';
-        }
-        return $errores;
-    }
-    function esValido(){
-        $erroresMatch=[];
-        if(!preg_match("/[A-Z]{1}[a-z]{9}/",$this->nombre)){
-            $erroresMatch['nombre']='no has escrito bien el nombre';
+            $this->errores['nombre']='nombre vacio';
+        }else if(!preg_match("/[A-Za-z]/",$this->nombre)){
+            $this->errores['nombre']='no has escrito bien el nombre';
         }
 
+        if(isset($this->apellido) && $this->apellido == ""){
+            $this->errores['apellido']='apellido vacio';
+        }else if(!preg_match("/[A-Za-z]/",$this->nombre)){
+            $this->errores['apellido']='no has escrito bien el apellido';
+        }
+
+        if(isset($this->correo) && $this->correo == ""){
+            $this->errores['correo']='correo vacio';
+        }else if(filter_var($this->correo,FILTER_VALIDATE_EMAIL)==FALSE){
+            $this->errores['correo']='no has escrito bien el apellido';}
+
+        if(isset($this->psswd) && $this->psswd == ""){
+            $this->errores['psswd']='contraseña vacia';
+        }else{//convertimos la contraseña en un hash para no saber cual es
+            $this->psswd= password_hash($this->psswd,PASSWORD_DEFAULT);
+        }
+        return $this->errores;
+    }
+
+    //validar datos no repetidos como el correo para mandarlos al csv 
+    function esValido(){
+        
+        
     }
 }
 ?>
