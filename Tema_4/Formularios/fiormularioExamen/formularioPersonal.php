@@ -4,6 +4,7 @@
      $classPath = "./";
      require("$classPath${class}.php");
  });
+$p=new Personal($_POST);
 
 ?>
 <!DOCTYPE html>
@@ -18,40 +19,20 @@
 <fieldset>
         <legend>Datos personales</legend>
         <form action="" method="post">
-            <label for="nombre">Nombre: </label>
-            <input type="text" name="nombre" id="nombre" placeholder="Introduce tu nombre"><br>
-            
-            <label for="apellido">apellido</label>
-            <input type="text" name="apellido" id="apellido" placeholder="Introduce tu apellido"><br>
-            
-            <label for="correo">Correo: </label>
-            <input type="email" name="correo" id="correo" placeholder="Introduce tu correo electrónico"><br>
-            
-            <label for="contrasenia">Contraseña: </label>
-            <input type="password" name="psswd" id="psswd">
-            <br>
-            <label for="telefono"> Telefono: </label>
-            <input type="tel" name="telefono" id="telefono" size="9" pattern="[0-9]{9}" placeholder="ej: 012345678">
-            <br>
-            <label for="genero"> Genero: </label>
-            <input type="radio" name="genero" id="generoM">Mujer
-            <input type="radio" name="genero" id="generoH">Hombre
-            <input type="radio" name="genero" id="generoO">Otro
-            <br>
-            <label for="fechaN"> Fecha de nacimiento: </label>
-            <input type="number" name="dia" id="dia" min="1" max="31" size="1" placeholder="dia">
-            <select name="mes" id="mes">
-            <?php //imprimimos los meses del año con un array_walk
-            $meses=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre' ];
-            array_walk($meses,function($op,$k,$data){ //la k es solo para que funcione data, data es lo que ha puesto el usuario
-                $sel = ($op==$data)?"selected":"";
-                echo "<option value='$op' $sel>$op</option>";
-            },$_POST['mes']); //el valor guardardo es el ultimo seleccionado, por eso se manda como parametro
+            <?php
+                $p->pintarInputGeneral('text','nombre');
+                $p->pintarInputGeneral('text','apellido');
+                $p->pintarInputGeneral('email','correo');
+                $p->pintarInputGeneral('password','psswd');
+                $p->pintarInputGeneral('tel','telefono');
+                $p->pintarInputRadio('Genero','mujer','hombre');
+                $p->pintarInputGeneral('number','dia');
+                $p->pintarInputSelect('meses','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
+                $p->pintarInputGeneral('number','anio');
             ?>
-            </select>
-            <input type="number" name="anio" id="anio" min="1900" max="2004" size="2" placeholder="año">
-            <br>
             <input type="submit" value="enviar">
+            <?php
+            ?>
         </form>
     </fieldset>
 </body>

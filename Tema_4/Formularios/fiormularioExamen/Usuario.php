@@ -30,17 +30,25 @@ class Usuario{
         $errores=[];
         
         if(isset($this->nombre) && $this->nombre == ""){
-            $errores['nombre']='no puedes estar vacio';
+            $errores['nombre']='nombre vacio';
         }
         if(isset($this->apellido) && $this->apellido == ""){
-            $errores['apellido']='no puedes estar vacio';
+            $errores['apellido']='apellido vacio';
         }
         if(isset($this->correo) && $this->correo == ""){
-            $errores['psswd']='no puedes estar vacio';
+            $errores['psswd']='correo vacio';
         }
         if(isset($this->psswd) && $this->psswd == ""){
-            $errores['psswd']='no puedes estar vacio';
+            $errores['psswd']='contraseña vacia';
         }
+        return $errores;
+    }
+    function esValido(){
+        $erroresMatch=[];
+        if(!preg_match("/[A-Z]{1}[a-z]{9}/",$this->nombre)){
+            $erroresMatch['nombre']='no has escrito bien el nombre';
+        }
+
     }
 }
 ?>
