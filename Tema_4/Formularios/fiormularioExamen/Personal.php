@@ -36,11 +36,12 @@ class Personal extends Usuario{
     function pintarInputGeneral($tipo,$nombre){
         echo "<label for='$nombre'>$nombre</label>
               <input type='$tipo' name='$nombre' id='$nombre'> ";
+        echo "<br>";      
     //salida de errores en caso de que haya un algo dentro de erorres 
         /*if (isset($this->errores[$nombre])) {
             echo "<div class='error'><p>".$this->errores[$nombre]."</p></div>";
         }*/
-        echo "<br>";
+        
         
     }
     function pintarInputRadio($nombre,  ...$opciones){
@@ -48,10 +49,11 @@ class Personal extends Usuario{
         foreach ($opciones as $n ) {
             echo "<input type='radio' name='$nombre' id='$n' >$n";
         }
+        echo "<br>";
         /*if (isset($this->errores[$nombre])) {
             echo "<div class='error'><p>".$this->errores[$nombre]."</p></div>";
         }*/
-        echo "<br>";
+        
     }
     function pintarInputSelect($nombre, ...$opciones){
         
@@ -62,10 +64,11 @@ class Personal extends Usuario{
             $sel = ($op==$data)?"selected":"";
             echo "<option value='$op' $sel>$op</option>";
         },$this->mes);
+        echo "</select><br>";
         /*if (isset($this->errores[$nombre])) {
             echo "<div class='error'><p>".$this->errores[$nombre]."</p></div>";
         }*/
-        echo "</select><span></span><br>";
+        
 
     }
 
@@ -73,7 +76,7 @@ class Personal extends Usuario{
     function validar(){
         parent::validar(); //sobreescribir metodo
         if(isset($this->telefono) && $this->telefono == ""){
-            $this->errores['telefono']='no puedes estar vacio';
+            $this->errores['telefono']='telefono esta vacio';
         }else if(preg_match("/[69]{1}[0-9]{8}$/",$this->telefono)){
 
         }
@@ -82,14 +85,14 @@ class Personal extends Usuario{
         }
 
         if(isset($this->dia) && $this->dia== ""){
-            $this->errores['dia']='no puedes estar vacio';
+            $this->errores['dia']='dia esta vacio';
         }else if($this->dia<1 || $this->dia>31){
             $this->errores['dia']='la fecha tiene que ser entre 1 y 31';
         }else if($this->mes=='febrero' && $this->dia>28)
             $this->errores['dia']='febrero no tiene tantos dias';
 
         if(isset($this->mes) && $this->mes== ""){
-            $this->errores['mes']='no puedes estar vacio';
+            $this->errores['mes']='mes esta vacio';
         }
 
         if(isset($this->anio) && $this->anio== ""){
@@ -111,7 +114,15 @@ class Personal extends Usuario{
             header("Location: listado.php");
             exit();
         }else{
-            print_r($this->errores);
+            if(isset($this->errores['nombre'])){echo $this->errores['nombre']. '<br>';}
+            if(isset($this->errores['apellido'])){echo $this->errores['apellido'] . '<br>';}
+            if(isset($this->errores['correo'])){echo $this->errores['correo']. '<br>';}
+            if(isset($this->errores['psswd'])){echo $this->errores['psswd']. '<br>';}
+            if(isset($this->errores['telefono'])){echo $this->errores['telefono']. '<br>';}
+            if(isset($this->errores['telefono'])){echo $this->errores['telefono']. '<br>';}
+            if(isset($this->errores['dia'])){echo $this->errores['dia']. '<br>';}
+            if(isset($this->errores['mes'])){echo $this->errores['mes']. '<br>';}
+            if(isset($this->errores['anio'])){echo $this->errores['anio']. '<br>';}
         }
 
     }

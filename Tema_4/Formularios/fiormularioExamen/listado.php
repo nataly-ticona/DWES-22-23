@@ -32,6 +32,9 @@ $lines = explode("\n", $data); //separador
             echo "<td> $fields[3]<td>";
             echo "<td> $fields[4]<td>";
             echo "<td> $fields[5]<td>";
+            echo "<td> $fields[6]<td>";
+            echo "<td> $fields[7]<td>";
+            echo "<td> $fields[8]<td>";
             echo "</tr>";
         }
         ?>
