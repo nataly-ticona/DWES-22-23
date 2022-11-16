@@ -30,26 +30,26 @@ class Usuario{
     public function validar(){
         
         if(isset($this->nombre) && $this->nombre == ""){
-            $this->errores['nombre']='nombre vacio';
+            $this->errores['nombre']='Nombre vacio';
         }else if(!preg_match("/[A-Za-z]/",$this->nombre)){
-            $this->errores['nombre']='no has escrito bien el nombre';
+            $this->errores['nombre']='No has escrito bien el nombre';
         }
 
         if(isset($this->apellido) && $this->apellido == ""){
-            $this->errores['apellido']='apellido vacio';
+            $this->errores['apellido']='Apellido vacio';
         }else if(!preg_match("/[A-Za-z]/",$this->nombre)){
-            $this->errores['apellido']='no has escrito bien el apellido';
+            $this->errores['apellido']='No has escrito bien el apellido';
         }
 
         if(isset($this->correo) && $this->correo == ""){
-            $this->errores['correo']='correo vacio';
+            $this->errores['correo']='Correo vacio';
         }else if(filter_var($this->correo,FILTER_VALIDATE_EMAIL)==FALSE){
-            $this->errores['correo']='no has escrito bien el apellido';}
+            $this->errores['correo']='No has escrito bien el correo';}
 
         if(isset($this->psswd) && $this->psswd == ""){
-            $this->errores['psswd']='contraseña vacia';
+            $this->errores['psswd']='Contraseña vacia';
         }else{//convertimos la contraseña en un hash para no saber cual es
-            $this->psswd= password_hash($this->psswd,PASSWORD_DEFAULT);
+            $this->psswd = password_hash($this->psswd,PASSWORD_DEFAULT);
         }
         return $this->errores;
     }

@@ -35,20 +35,20 @@ class Personal extends Usuario{
     //pintar inputs 
     function pintarInputGeneral($tipo,$nombre, $valor=''){
         echo "<label for='$nombre'>$nombre</label>
-              <input type='$tipo' name='$nombre' id='$nombre' value='$valor'> ";
+              <input type='$tipo' name='$nombre' id='$nombre' value='$valor' class='input'> ";
         echo "<br>";      
     }
     function pintarInputRadio($nombre,  ...$opciones,){
         echo "<label for='$nombre'>$nombre</label>";
         foreach ($opciones as $n ) {
-            echo "<input type='radio' name='$nombre' id='$n'>$n";
+            echo "<input type='radio' name='$nombre' id='$n' class='input'>$n";
         }
         echo "<br>";
         
         
     }
     function pintarInputSelect($nombre, ...$opciones){
-        echo "<label for='$nombre'>$nombre</label>
+        echo "<label for='$nombre' class='input'>$nombre</label>
         <select name='$nombre' id='$nombre'>";
 
         array_walk($opciones,function($op,$k){ 
@@ -63,20 +63,20 @@ class Personal extends Usuario{
     function validar(){
         parent::validar(); //sobreescribir metodo
         if(isset($this->telefono) && $this->telefono == ""){
-            $this->errores['telefono']='telefono esta vacio';
+            $this->errores['telefono']='Telefono esta vacio';
         }else if(!preg_match("/[69]{1}[0-9]{8}$/",$this->telefono)){
             $this->errores['telefono']='El telefono tiene que empezar por 6 o 9 y luego 8 numeros';
         }
         if(isset($this->genero) && $this->genero==""){
-            $this->errores['genero']='selecciona un genero';
+            $this->errores['genero']='Selecciona un genero';
         }
 
         if(isset($this->dia) && $this->dia== ""){
-            $this->errores['dia']='dia esta vacio';
+            $this->errores['dia']='Dia esta vacio';
         }else if($this->dia<1 || $this->dia>31){
-            $this->errores['dia']='la fecha tiene que ser entre 1 y 31';
+            $this->errores['dia']='La fecha tiene que ser entre 1 y 31';
         }else if($this->mes=='febrero' && $this->dia>28)
-            $this->errores['dia']='febrero no tiene tantos dias';
+            $this->errores['dia']='Febrero no tiene tantos dias';
 
         if(isset($this->mes) && $this->mes== ""){
             $this->errores['mes']='mes esta vacio';
@@ -93,7 +93,7 @@ class Personal extends Usuario{
 
     //esValido
     function esValido(){
-        /*        $data= file_get_contents("usuarios.csv");
+        /*$data= file_get_contents("usuarios.csv");
         $line=explode("\n", $data);
         $fields=explode(";",$line);
             echo "<td> $fields[0]<td>";*/
@@ -101,16 +101,16 @@ class Personal extends Usuario{
             //guardado
             file_put_contents("usuarios.csv","".parent::getNombre().";".parent::getApellido().";".parent::getCorreo().";".parent::getPsswd().";$this->telefono;$this->genero;$this->dia;$this->mes;$this->anio;\n",FILE_APPEND);
             
-            //redirect, el header no puede escribir nada antesd e la cabecera (como las cookies)
+            //redirect, el header no puede escribir nada antes de la cabecera (como las cookies)
             header("Location: listado.php");
             exit();
         }else{
             parent::esValido();
-            if(isset($this->errores['telefono'])){echo '<p>'.$this->errores['telefono'].'</p>';}
-            if(isset($this->errores['genero'])){echo '<p>'. $this->errores['genero']. '</p>';}
-            if(isset($this->errores['dia'])){echo '<p>'. $this->errores['dia']. '</p>';}
-            if(isset($this->errores['mes'])){echo '<p>'.$this->errores['mes']. '</p>';}
-            if(isset($this->errores['anio'])){echo '<p>'.$this->errores['anio']. '</p>';}
+            if(isset($this->errores['telefono'])){echo '<p class="error">'.$this->errores['telefono'].'</p>';}
+            if(isset($this->errores['genero'])){echo '<p class="error">'. $this->errores['genero']. '</p>';}
+            if(isset($this->errores['dia'])){echo '<p class="error">'. $this->errores['dia']. '</p>';}
+            if(isset($this->errores['mes'])){echo '<p class="error">'.$this->errores['mes']. '</p>';}
+            if(isset($this->errores['anio'])){echo '<p class="error">'.$this->errores['anio']. '</p>';}
         }
 
     }

@@ -16,16 +16,32 @@ $p=new Personal($_POST);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal</title>
 <style>
+    body{
+        background-color: #B0DDF3;
+    }
     header{
         font-size: 10px;
         text-align: center;
     }
     #contenedor{
-        width: 90%;
+        width: 50%;
         margin: 0 auto;
     }
+    .input{
+        margin-left: 10px;
+        
+    }
     input, select {
-        margin: 2px;
+        margin-left: 5px;
+        text-align: center;
+    }
+    input[type=text], input[type=number] ,input[type=tel], input[type=email]{
+        color: green;
+    }
+    .error{
+        padding: 0px;
+        color: red;
+        border: 1px solid white;
     }
     
 </style>
@@ -51,7 +67,6 @@ $p=new Personal($_POST);
                  $p->pintarInputGeneral('number','dia');
                  $p->pintarInputSelect('mes','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
                  $p->pintarInputGeneral('number','anio');
-                $p->getGenero();
                $p->validar();
                $p->esValido();
                
