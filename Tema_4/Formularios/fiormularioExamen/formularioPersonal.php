@@ -4,7 +4,9 @@
      $classPath = "./";
      require("$classPath${class}.php");
  });
+
 $p=new Personal($_POST);
+
 
 ?>
 
@@ -69,24 +71,27 @@ $p=new Personal($_POST);
         <legend>Datos personales</legend>
         <form action="" method="post">
                 <?php
+                    $f= new Formulario();
+                    $f->pintarFormulario();
+                    
+                    if(isset($_POST['enviar'])){
+                        $p->validar();
+                        $p->esValido();
+                    }
+                    /*
                     $p->pintarInputGeneral('text','nombre', $_POST['nombre']);
                     $p->pintarInputGeneral('text','apellido', $_POST['apellido']);
                     $p->pintarInputGeneral('email','correo',$_POST['correo']);
                     $p->pintarInputGeneral('password','psswd');
                     $p->pintarInputGeneral('tel','telefono', $_POST['telefono']);
                     $p->pintarInputRadio('genero','mujer','hombre');
+                    $p->pintarInputGeneral('number','dia');
+                    $p->pintarInputSelect('mes','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
+                    $p->pintarInputGeneral('number','anio');
+                    */
                 ?>
-            <div id="fechaN">
-                <?php
-                 $p->pintarInputGeneral('number','dia');
-                 $p->pintarInputSelect('mes','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
-                 $p->pintarInputGeneral('number','anio');
-               $p->validar();
-               $p->esValido();
-               
-                ?>
-            </div>
-            <input type="submit" value="enviar">
+
+            <input type="submit" value="enviar" name='enviar'>
             
         </form>
     </fieldset>
