@@ -17,10 +17,10 @@
 
         //metodos
         public function cargar($coche){
-            $this->cocheCargado.=" ". $coche;
+            $this->cocheCargado = $coche;
         }
 
-        public function descargar($cocheCargado){
+        public function descargar(){
             $this->cocheCargado=null;
         }
 

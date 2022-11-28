@@ -1,6 +1,6 @@
 <?php
 //DECISIONES
-$numeros=[mt_rand(0,20),mt_rand(0,20),mt_rand(0,20)];
+$numeros=[rand(0,20),rand(0,20),rand(0,20)];
 $mayor=$numeros[0] ; 
 $menor=$numeros[0];
 $mediano=$numeros[0];
@@ -32,24 +32,24 @@ for ($i=0; $i < sizeof($numeros) ; $i++) {
 </head>
 <body>
     <p>Decisiones</p>
-    <h1><?=$mayor?></h1>
-    <h2><?=$mediano?></h2>
-    <h3><?=$menor?></h3>
+    <h2>Mayor <?=$mayor?></h2>
+    <h2>Mediano <?=$mediano?></h2>
+    <h2>Menor <?=$menor?></h2>
 
     <p>Bucles</p>
     <p>1. Mostrar cada caracter</p>
     <?php
         for ($i=0; $i < strlen($cadena1); $i++) {
             //el substr pilla $i mas 1 de la cadena cada vez 
-            echo "<h4>" . substr($cadena1,$i,1) . "</h4>";
+            echo "<h4>" . $cadena1[$i] . "</h4>";
         }
     ?>
     <p>2. Parar la cadena si hay 'a'</p>
     <?php
-        $cadena2="nataly";
+        $cadena2="otra";
         $i=0;
-        while(substr($cadena2,$i,1)!='a' && substr($cadena2,$i,1)!='A'){
-            echo "<h4>" . substr($cadena1,$i,1) . "</h4>";
+        while($cadena2[$i]!='a' && $cadena2[$i]!='A'){
+            echo "<h4>" . $cadena2[$i] . "</h4>";
             $i++;
         }
             
@@ -60,7 +60,7 @@ for ($i=0; $i < sizeof($numeros) ; $i++) {
         do{
             $n=rand(0,100);
             echo "<span>". $n . "<span> ";
-        }while($n!=17 && $n%$n==0);
+        }while($n!=17 && $n/$n==0);
 
     ?>
 </body>

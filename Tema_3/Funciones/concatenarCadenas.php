@@ -7,10 +7,10 @@ aleatorios entre 0 y 20.
 echo concatena(" ", "Hola", "mundo", "!"); echo concatena(".", "Esto", "son", "puntos");
 */
 
-function concatena(string $separador, string ...$cadena ):string { //que devuelva un
+function concatena(string $separador, string ...$cadena ):string { //que devuelva un string con todas las cadenas
     $salida="" ;
     foreach($cadena as $k => $cadena ){
-        $salida .= (($k==0)?"":$separador).$cadena; //va concatenando todo el rato
+        $salida .= (($k==0)?"":$separador).$cadena; //va concatenando todo el rato, es 0 por el key
     } 
     return $salida;
 };

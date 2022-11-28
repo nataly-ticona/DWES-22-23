@@ -21,6 +21,19 @@
         ];
         print_r($total);
     }
+    //MEJOR ESTE QUE EL PRIMERO, ESTE TE DEVUELVE CUANTOS DE CADA TIPO HAY
+    function analizParametros(...$varios) {
+        $array = [];
+        foreach($varios as $key => $value) {
+            if(array_key_exists(gettype($value), $varios)) {
+                $array[gettype($value)] = 1;
+            } else {
+                $array[gettype($value)]++;
+            }
+        }
+
+        return $array;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,5 +45,8 @@
 </head>
 <body>
     <p><?=valores(3, "h", 'hola', [1,2,3], [1], "h")?></p>
+    <pre>
+    <p><?=print_r(analizParametros(3, "h", 'hola', [1,2,3], [1], "h"))?></p>
+    </pre>
 </body>
 </html>
