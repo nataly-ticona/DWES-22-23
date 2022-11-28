@@ -47,7 +47,6 @@ if(isset($_POST['enviar'])){
     if(count($errores)==0){
         //guardado
         file_put_contents("tema.csv","$tema;$hora;$min\n",FILE_APPEND);
-        
         //redirect, el header no puede escribir nada antesd e la cabecera (como las cookies)
         header("Location: listado.php");
         exit();

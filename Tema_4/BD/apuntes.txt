@@ -1,0 +1,58 @@
+BASE DE DATOS
+- SQL{ Consultas
+        DDL
+        DML
+     }
+
+- E-R{ Tablas }
+- Nos pondremos a trabajar con librerias.
+- Usamos un servidor de desarrollo (php -S localhost) 
+apt install mariadb-server
+mariadb
+show databases; (enseña las bases de datos que tenemos)
+
+- Cuando ejecutamos mariadb, activamos un cliente 
+- mysql lite es una libreria 
+
+--------------------------------------------------------
+                APUNTES EXCEPCIONES 
+No mostrar el error y mostrarlo como en el ejercicio de 'practica.php', es el por defecto: 
+        $dbh->setAttribute(PDO::ATTRR_ERRMODE, PDO::ERRMODE_SILENT);
+
+Manda un mensaje E_WARNING
+        $dbh->setAttribute(PDO::ATTRR_ERRMODE, PDO::ERRMODE_WARNING);
+
+Si algo esta mal te manda una excepcion 
+        $dbh->setAttribute(PDO::ATTRR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+--------------------------------------------------------
+                    REGISTRAR DATOS 
+Hacemos prepare y luego un execute que es el que toca la BD
+NO podemos poner los datos en el insert porque no son
+
+        $stmt = $dbh->prepare("INSERT INTO Clientes (nombre, ciudad) VALUES (:nombre,:ciudad)");
+
+        // Bind: preparamos los datos 
+        $nombre = "Charles";
+        $ciudad = "Valladolid";
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':ciudad', $ciudad);
+        // Excecute
+        $stmt->execute();
+        // Bind
+        $nombre = "Anne";
+        $ciudad = "Lugo";
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':ciudad', $ciudad);
+        // Execute
+        $stmt->execute();
+
+Si es solo para un dato 
+        // Prepare:
+        $stmt = $dbh->prepare("INSERT INTO Clientes (nombre, ciudad) VALUES (:nombre, :ciudad)");
+        $nombre = "Luis";
+        $ciudad = "Barcelona";
+        // Bind y execute:
+        if($stmt->execute(array(':nombre'=>$nombre, ':ciudad'=>$ciudad))) {
+        echo "Se ha creado el nuevo registro!";
+        }

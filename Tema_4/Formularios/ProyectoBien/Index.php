@@ -1,12 +1,13 @@
 <?php
-//para archivos en una misma carpeta
- spl_autoload_register(function ($class) {
-     $classPath = "./";
-     require("$classPath${class}.php");
- });
+//para archivos en distintas carpetas
 
-$p=new Personal($_POST);
+spl_autoload_register(function($class) {
+    $path = "./";
+    $file = str_replace("\\", "/", $class);
+    require("$path${file}.php");
+});
 
+$formulario = Formulario\Input::pintarFormulario();
 
 ?>
 
@@ -70,15 +71,18 @@ $p=new Personal($_POST);
     <fieldset>
         <legend>Datos personales</legend>
         <form action="" method="post">
-                <?php
-                    $f= new Formulario();
+                 <?php
+                 
+                 /*
+                 $f= new Formulario();
                     $f->pintarFormulario();
                     
                     if(isset($_POST['enviar'])){
                         $p->validar();
                         $p->esValido();
-                    }
-                ?>
+                    }*/
+                    
+                ?> 
 
             <input type="submit" value="enviar" name='enviar'>
             

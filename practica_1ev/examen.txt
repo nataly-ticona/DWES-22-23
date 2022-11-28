@@ -1,0 +1,6 @@
+- Mezclar php con HTML
+- Funciones
+- Arrays (array_map, array_walk, array_reduce ...)
+- Objetos (herencia, polimorfismos, interfaces, abstractas, trait)
+- formuñarios (text, date, checkbox, text area, select, radio), en get o en post
+-  consultas (select, insert, delete, update)

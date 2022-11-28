@@ -1,6 +1,8 @@
 <?php
 
 class Validacion{
+
+    //expresiones
     //array global que se llama en toda la clase
     private static $errores = [];
 

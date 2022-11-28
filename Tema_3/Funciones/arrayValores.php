@@ -1,5 +1,5 @@
 <?php
-    function cambiar(mixed ...$variables){
+    function cambiar(mixed ...$variable){
         $n=1;
         foreach ($variable as $valor) {
             switch ($valor) {

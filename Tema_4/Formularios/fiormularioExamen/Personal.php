@@ -45,11 +45,11 @@ class Personal extends Usuario{
     }
 
     // //validar datos no repetidos como el correo para mandarlos al csv 
-    function esValido(){
+    function esValido(){ //cambiar el nombre de la funcion a validatyGuardar
         //mandamos el array de errores para comprobar si existen datos en el array (hay errores)
         if(count(Validacion::getErrors())==0){
             //guardado
-            file_put_contents("usuarios.csv","".parent::getNombre().";".parent::getApellido().";".parent::getCorreo().";".parent::getPsswd().";$this->telefono;$this->genero;$this->dia;$this->mes;$this->anio;\n",FILE_APPEND);
+            file_put_contents("usuarios.csv",parent::getNombre().";".parent::getApellido().";".parent::getCorreo().";".parent::getPsswd().";$this->telefono;$this->genero;$this->dia;$this->mes;$this->anio;\n",FILE_APPEND);
             
             //redirect, el header no puede escribir nada antes de la cabecera (como las cookies)
             header("Location: listado.php");

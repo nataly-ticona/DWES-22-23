@@ -6,17 +6,7 @@ class Usuario{
     private $correo;
     private $psswd;
 
-    public function rellenarNombres(){
-        $this->nombres=['nombre','apellido','correo','psswd'];
-    }
-    
-    public function getNombres(){
-        return $this->nombres;
-    }
-    public function getTipo(){
-        return $this->tipo;
-    }
-
+    //constructor
     function __construct( $nombre, $apellido, $correo, $psswd){
         $this->nombre=$nombre;
         $this->apellido=$apellido;
@@ -24,6 +14,7 @@ class Usuario{
         $this->psswd=$psswd;
     }
 
+    //getters y setters
     function getNombre(){return $this->nombre;}
     function setNombre($nombre){$this->nombre=$nombre;}
 

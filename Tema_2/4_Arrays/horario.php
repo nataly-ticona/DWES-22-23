@@ -74,6 +74,5 @@ $horario=[
             }
         ?>  
     </table>
-    <?php?>
 </body>
 </html>

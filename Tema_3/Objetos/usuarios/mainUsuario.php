@@ -1,7 +1,8 @@
 <?php
 require './Usuario.php';
+require './UsuarioAdmin.php';
+require './UsuarioPremium.php';
 $user1 = new Usuario('user 1','apellido', 'baloncesto');
-
 $user1->imprimirInformacion();
 ?>
 <!DOCTYPE html>

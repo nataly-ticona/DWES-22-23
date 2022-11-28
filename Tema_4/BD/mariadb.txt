@@ -1,0 +1,38 @@
+CREATE DATABASE examen;  (nombre de la base de datos)
+
+CREATE USER 'examen'@'localhost' IDENTIFIED BY 'examen';  (nombre de usuario IDENTIFIED BY contraseña)
+
+GRANT ALL PRIVILEGES ON examen. * TO 'examen'@'localhost' WITH GRANT OPTION; (todos los privilegios sobre la base de datos 'examen' al usuario con opcion de dar privilegios )
+
+MI BASE DE DATOS{
+    MI BASE DE DATOS PERSONAL: 
+    CREATE USER 'nataly'@'localhost' IDENTIFIED BY '1234';
+}
+
+MARIADB{
+    Para acceder a mariadb con un usuario en el localhost;
+    
+    mariadb -u nataly -p mibasedatos;
+    
+    mariadb -h 127.0.0.1 -u usuario -p basedatos;
+}
+
+SQL{
+    Para entrar en MYSQL: use mysql;
+    Mostramos los usuarios: SELECT user FROM user ORDER BY user ASC;
+    Eliminar un usuario: DROP user FROM user WHERE user='nombre';
+}
+
+INSTALAR MYSQL{
+    libreria para leer mysql con php: apt install php-mysql 
+    snap install mysql-workbench-community 
+}
+
+DBEAVER-CE{ 
+        name:'Primero'
+        hostname: el mio por defecto
+        username: nataly 
+        psswd: 1234
+        schema: mibasedatos
+}
+
