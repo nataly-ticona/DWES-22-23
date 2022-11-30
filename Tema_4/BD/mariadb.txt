@@ -2,7 +2,8 @@ CREATE DATABASE examen;  (nombre de la base de datos)
 
 CREATE USER 'examen'@'localhost' IDENTIFIED BY 'examen';  (nombre de usuario IDENTIFIED BY contraseña)
 
-GRANT ALL PRIVILEGES ON examen. * TO 'examen'@'localhost' WITH GRANT OPTION; (todos los privilegios sobre la base de datos 'examen' al usuario con opcion de dar privilegios )
+GRANT ALL PRIVILEGES ON examen. * TO 'examen'@'localhost' WITH GRANT OPTION; 
+(todos los privilegios sobre la base de datos 'examen' al usuario con opcion de dar privilegios )
 
 MI BASE DE DATOS{
     MI BASE DE DATOS PERSONAL: 
