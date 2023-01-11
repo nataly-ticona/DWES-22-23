@@ -1,16 +1,15 @@
 <?php
-//mio
+//conexion BDs
+require("./database.php");
+
+//sesiones siempre de las primeras cosas
 session_start();
 
-spl_autoload_register(function($class){
-    $path = "./";
-    $file = str_replace("\\", "/", $class);
-
-    require("$path{$file}.php");
-});
-
-$conn = Conn::singleton()->getConn();
-//ya ta
+//si la sesion['name_user'] ya esta se redirige directamente a la pagina principal
+if (isset($_SESSION['user'])) {
+    header("Location: principal.php");
+    die();
+}
 
 function clean_input($data) {
   $data = trim($data);
@@ -19,46 +18,63 @@ function clean_input($data) {
   return $data;
 }
 
-$login = "";
+$name='';
+$email = "";
 $pass = "";
-
-//mio
-$url = isset($_POST['url'])?$_POST['url']:'';
-if(empty($url)) {
-    $url = isset($_GET['url'])?$_GET['url']:Conn::singleton()->encrypt("./publico.php");;
-}
-//ya
-
+$url = "";
 $errorList = [];
+
+if (isset($_GET['url'])) {
+    $url = $_GET['url'];
+}else if (isset($_POST['url'])) {
+    $url = $_POST['url'];
+}
+
 
 
 if(isset($_POST["submit"])) {
-    if(isset($_POST["login"])){
-        $login = clean_input($_POST["login"]);
+    //limpiamos el email
+    if(isset($_POST["email"])){
+        $email = clean_input($_POST["email"]);
     }
-
-    if (!filter_var($login, FILTER_VALIDATE_EMAIL)) {
+    //validamos el email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errorList[] = "Usuario inválido";
-        //http://php.net/manual/es/filter.filters.php
     }
 
-
+    //limpiamos el pass
     if(isset($_POST["password"])){
         $password = clean_input($_POST["password"]);
     }
+    //validamos el pass
+    $consulta = $mbd->prepare("SELECT * FROM usuarios WHERE email = :email LIMIT 1");
+    $consulta->execute([':email' => $email]);
+    $user = $consulta->setFetchMode(PDO::FETCH_ASSOC); 
+    $_SESSION['user']=$user;
+    
 
-    // $us=$_POST['usuario'];
-    // $pass=$_POST['pass'];
-    // $sql="SELECT * FROM usuarios WHERE user = ? AND password=?";
-
-    if( $login == $user['email'] && password_verify($password, $user['password']) ){
-      $_SESSION['email'] = $login;
-        $_SESSION['password'] = $password;
-        $_SESSION['user'] = explode("@", $login)[0];
-        header('Location: '.Conn::singleton()->decrypt($url));
+    //si esta todo validado le enviaremos a la pagina que el queria o sino a la principal
+    if( isset($user) && password_verify($password, $user['pass']) ){
+        $_SESSION["email"] = $email;
+        if ($url != "") {
+            header('Location: .'.$url);
+        }else{
+            header('Location: principal.php');
+        }
         exit;
     }else{
         $errorList[] = "Clave errónea";
+    }
+
+    //obtenemos el nombre de usuario
+    $consulta2 = $mbd->prepare("SELECT name FROM usuarios WHERE email = :email");
+    $consulta2->execute([':email' => $email]);
+    
+
+    if($_COOKIE['user_name']) {
+        $nombre =$_COOKIE['user_name'];
+    }else{
+        header('Location: login.php');
     }
 }
 
@@ -67,41 +83,43 @@ if(isset($_GET["error"])){
     $errorList[] = $_GET["error"];
 }
 
-
-//MIO
-function validarPsswd($password){
-  
-}
-
 ?>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" media="all" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" media="all" href="./css/login.css">
+    <title>Inicio de sesion</title>
 </head>
+
 <body>
-<form action="login.php" method="post" class="login">
-    <p>
-      <label for="login">Email:</label>
-      <input type="text" name="login" id="login" value="<?=$login?>">
-    </p>
+    <div id="login">
+        <form action="login.php" method="post" class="login">
+            <p>
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" value="<?=$email?>">
+                <input type="hidden" name="url" id="url" value="<?=$url?>">
+            </p>
 
-    <p>
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" value="">
-    </p>
+            <p>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" value="">
+            </p>
 
-    <?php if (count($errorList)>0) { ?>
-    <p>
-      <?php foreach($errorList as $error) { ?>
-        <div class="error"><?= $error ?></div>
-      <?php } ?>
-    </p>
-    <?php }?>
+            <?php if (count($errorList)>0) { ?>
+            <p>
+                <?php foreach($errorList as $error) { ?>
+            <div class="error"><?= $error ?></div>
+            <?php } ?>
+            </p>
+            <?php }?>
 
-    <p class="login-submit">
-      <label for="submit">&nbsp;</label>
-      <button type="submit" name="submit" class="login-button">Login</button>
-    </p>
-</form>
+            <p class="login-submit">
+                <label for="submit"></label>
+                <button type="submit" name="submit" class="login-button">Login</button>
+            </p>
+        </form>
+        <p>¿No tiene cuenta? <a href="./registro.php">Registrate</a></p>
+    </div>
+    
 </body>
+
 </html>

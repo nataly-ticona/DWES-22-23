@@ -1,7 +1,9 @@
+<link rel="stylesheet" href="./css/menu.css">
 
-<ul>
-    <li><a href="./index.php">Indice</a></li>
-    <li>Personal</li>
-    <li></li>
-    <li></li>
-</ul>
+    <ul>
+        <li><a href="./principal.php">Principal</a></li>
+        <li><a href="./perfil.php">Personal</a></li>
+        <li><a href="./publicar.php">Crear tweet</a></li>
+        <li><a href="./outlog.php">Cerrar sesion</a></li>
+    </ul>
+

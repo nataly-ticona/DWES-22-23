@@ -1,0 +1,28 @@
+body{
+    width: auto;
+    background-color: rgb(58, 58, 58);
+}
+ul{
+    text-align: center;
+    list-style: none;
+    height: fit-content;
+}
+li{
+    display:inline;
+    background-color:  rgba(255, 255, 255, 0.718);
+    padding: 20px;
+    padding-right: 25px;
+    margin-left: -5px;
+}
+header{
+    background-color: rgb(211, 160, 212);
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+main{
+    margin: 0 auto;
+    width: 80%;
+    padding: 10px 0px  10px 10px ;
+    background-color: rgb(76, 48, 102);
+}
