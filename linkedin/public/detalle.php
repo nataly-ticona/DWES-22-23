@@ -1,0 +1,1 @@
+<!-- Publica: acepta id /detalle/id -->
