@@ -23,7 +23,7 @@ echo "</pre>";
 /*crea un array a prtir de estas edades  (25 24 29 26 23 22 20 19*)
 una vez creada elimina aquellos que tengan menos de 23 sustituyelos por su color de 
 camiseta de la lista. 
- 25 24 29 26 23 22 20 19*/ç
+ 25 24 29 26 23 22 20 19*/
 
 /*hacer una clase con el numero de clase y la zona. Luego en el medio del 
 array coloca el numero de identificacion de 10 niños en una tabla */

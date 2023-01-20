@@ -2,7 +2,7 @@
 namespace bancos;
 
 class BancoMalvado implements PlataformaPago{
-        
+    
     public function estableceConexión():bool{
         echo 'establece conexion BancoMalvado ';
         return true;

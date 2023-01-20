@@ -14,3 +14,7 @@ Cargar ejemplos
 mysql -u linkenin -p linkenin < scripts/db.ejemplos.sql
 
 echo "vendor/*" >> .gitignore añadir un archivo a que ignore ese archivo
+
+
+Script que ejecuta el servidor de desarrollo 
+./rundevserver.sh

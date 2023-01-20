@@ -1,0 +1,2 @@
+session_start(array $option=[]): bool
+te genera una cookie aleatoria

@@ -129,3 +129,4 @@ $update->execute();
 //DELETE
 $delete = $db->prepare("DELETE FROM `table` WHERE `col2` = :the_value");
 $delete->execute(array(':the_value' => $value));
+?>

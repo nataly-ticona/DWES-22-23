@@ -32,9 +32,12 @@ function selectAll($mbd){
     <?php
     foreach ($baseDatos as $valor) {?>
         <tr>
-            <td><?=$valor['id'] ?></td>
-            <td><?=$valor['nombre'] ?></td>
-            <td><?=$valor['num_trofeos'] ?></td>
+            <?php
+            foreach ($valor as $value) {?>
+                <td><?=$value?></td>
+            <?php 
+            }
+            ?>
         </tr>
     <?php    
     }

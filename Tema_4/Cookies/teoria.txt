@@ -1,0 +1,21 @@
+Es lo mismo post que get, tiene una capa de seguridad minima porque no esta en el url
+Get suele de consulta
+Post para modificacion de datos 
+--------------------------------------------------
+Cliente         |    Servidor        | Fiable 
+--------------------------------------------------
+HTTP-cabecera   |    $_SERVER        |    no
+url             |     $_GET          |    no
+formulario      |     $_POST         |    no 
+XHR (xml,       |  $_GET a $_POST    |    no
+http,request)                      
+cabecera        |     $_COOKIES      |    no
+
+
+Sesiones: 
+en el servidor
+token -> $_SESSION
+Servidor <----- Cliente
+Genero token (llave)-----> cookie
+
+Las sesiones usa las cookies, por eso estan ligadas

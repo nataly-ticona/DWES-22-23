@@ -1,3 +1,14 @@
+MARIADB{
+    Para acceder a mariadb con un usuario en el localhost;
+    
+    mariadb -u nataly -p mibasedatos;
+    
+    mariadb -h 127.0.0.1 -u usuario -p basedatos;
+}
+
+
+
+
 CREATE DATABASE examen;  (nombre de la base de datos)
 
 CREATE USER 'examen'@'localhost' IDENTIFIED BY 'examen';  (nombre de usuario IDENTIFIED BY contraseña)
@@ -10,13 +21,6 @@ MI BASE DE DATOS{
     CREATE USER 'nataly'@'localhost' IDENTIFIED BY '1234';
 }
 
-MARIADB{
-    Para acceder a mariadb con un usuario en el localhost;
-    
-    mariadb -u nataly -p mibasedatos;
-    
-    mariadb -h 127.0.0.1 -u usuario -p basedatos;
-}
 
 SQL{
     Para entrar en MYSQL: use mysql;

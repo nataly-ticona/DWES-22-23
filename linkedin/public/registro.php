@@ -1,7 +1,7 @@
 <!-- Publica: /registro -->
 <?php 
     require '../src/init.php';
-
+    
     if(isset($_POST['registrar'])){
         $DB->ejecuta(
             "INSERT INTO usuarios(nombre, passwd, correo) VALUES (?,?,?)", 
@@ -14,7 +14,7 @@
     $insertado = $DB->getExecuted();
 
     if ($insertado) {
-        //metodo estatico (correo,usuario y contra)
+        //metodo estatico (correo,usuario y texto)
         Mailer::sendEmail(
             $_POST['correo'],
             "nuevo usuario",
