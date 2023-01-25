@@ -4,7 +4,12 @@ require("../src/init.php");
 //require("private_area.php");
 //recoger losd datos del post
 
+$title="login";
+$pageHeader="Iniciar sesion";
+$pageId="login";
 
+
+ob_start(); //todo lo que escriba ahora no se escribira
 
 //creamos otra pagina para almacenar el token 
 if (isset($_POST["enviar"])) {
@@ -41,12 +46,12 @@ if (isset($_POST["enviar"])) {
                 ["expires" => (time() + (7 * 24 * 60 * 60)), "httponly" => true 
                 ]
             );
-                // header("Location: listado.php");
-                // exit();
+                header("Location: listado.php");
+                die();
         }
 
-        // header("Location: listado.php");
-        //     exit();
+        header("Location: listado.php");
+            die();
     }else{
         //mostramos el error que salga !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         echo "no va :')";
@@ -61,21 +66,34 @@ if (isset($_POST["enviar"])) {
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesion</title>
-</head>
-<body>
-    <form action="login.php" method="post">
-        <label for="nombre">User:</label>
-        <input type="text" name="nombre" id="" value="<?=$nombre?>">
-        <input type="password" name="passwd" id="" value="<?=$passwd?>">
-        <input type="checkbox" name="recuerdame" id="" > recuerdame
-        <input type="submit" name="enviar" value="enviar">
-    </form>
-</body>
-</html>
+<style>
+    main{
+        
+        padding-top: 5px;
+        border-radius: 10px;
+    }
+    form{
+        padding-bottom: 30px;
+    }
+    form > label > input{
+        background-color: gray;
+    }
+</style>
+<form action="login.php" method="post">
+    <label for="nombre" class="input-form">User name:
+    <input type="text" name="nombre" size="10" value="<?=$nombre?>">
+    </label><br>
+    <label for="passwd" class="input-form">Password:
+    <input type="password" name="passwd" size="10" value="<?=$passwd?>">
+    </label><br>
+    <label for="recuerdame" class="input-form">recuerdame
+    <input type="checkbox" name="recuerdame">
+    </label> <br>
+    <input type="submit" name="enviar" value="enviar">
+</form>
+<?php 
+
+$content=ob_get_clean(); 
+
+require('./template.php'); 
+?>

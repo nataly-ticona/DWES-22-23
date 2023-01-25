@@ -1,0 +1,5 @@
+Se hace el recuerdame y el token de la session a parte cada uno
+
+Ventanas -> La session y el recuerdane estan separados. hacemos un control de expiracion o invalidacion (muy importante), todo el mundo lo hace asi. 
+
+Desventajas -> es mas dificil, hay que hacer consultas. 

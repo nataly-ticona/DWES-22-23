@@ -62,7 +62,7 @@ $usuario = $DB->obtenElDato();
         <?php if($usuario['img'] != "") { ?>
             <img src="<?=$usuario['img']?>" /><br>
         <?php } ?>
-        imagen <input type="file" accept="image/png,image/jpeg" name="imagen"><br>
+        Imagen : <input type="file" accept="image/png,image/jpeg" name="imagen"><br>
         <textarea name="descripcion" id="descripcion" cols="30" rows="10"><?=$usuario['descripcion']?>
         </textarea>
         <br>
