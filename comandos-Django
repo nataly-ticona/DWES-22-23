@@ -1,3 +1,25 @@
+Cuando ya se ha instalado django 
+- para empezar un nuevo proyecto 
+    django-admin startproject mysite
+- iniciar el servidor creado
+    python manage.py runserver (dentro de mysite (1ero))
+
+python manage.py startapp polls (dentro de mysite (1ero))
+
+
+python manage.py runserver (dentro de mysite (1ero)) y visitar localhost:8000/polls/
+
+#añadir a la app de encuestas una ruta que sea holamundo para que cuando la visites pinte tu nombre
+
+apt-get update
+apt-get install python3-dev default-libmysqlclient-dev build-essential
+apt-get install python3-dev default-libmysqlclient-dev libzstd-dev
+pip install mysqlclient (sin root)(da igual la carpeta)
+python3 manage.py migrate
+
+
+
+
 Una vez ya esta instalado pyhton y django 
 
 - Creacion de un proyecto  
