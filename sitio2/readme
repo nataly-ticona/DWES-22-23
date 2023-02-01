@@ -1,0 +1,81 @@
+Una vez ya esta instalado pyhton y django 
+
+- Creacion de un proyecto  
+
+django-admin startproject mysite
+
+python manage.py runserver (dentro de mysite (1ero))
+
+python manage.py startapp polls (dentro de mysite (1ero))
+
+
+python manage.py runserver (dentro de mysite (1ero)) y visitar localhost:8000/polls/
+
+
+- MYSQL 
+
+En mariadb creamos un usuario y una base de datos
+
+CREATE DATABASE misitio2;
+CREATE USER 'user_misitio2'@'localhost' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON misitio2.* TO 'user_misitio2'@'localhost' WITH GRANT OPTION;
+
+En settings.py de polls hay que cambiar el array de DATABASES: 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'misitio2',
+        'USER': 'user_misitio2',
+        'PASSWORD': '1234',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
+
+
+
+python manage.py makemigrations 
+
+ython manage.py migrations/migrate 
+
+
+- Hacemos en models.py. Son clases y tablas. 
+La base de datos se fija en este fichero para validar que los datos sean correctos
+
+La modificamos asi:
+
+from django.db import models
+
+# Create your models here.
+
+
+class Question(models.Model):
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+
+class Choice(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+
+
+- En mysite/settings.py modificamos el array.
+
+
+INSTALLED_APPS = [
+    'polls.apps.PollsConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+
+Luego ejecutamos el comando: 
+- modificacion de archivo
+    python manage.py makemigrations polls
+- actualiza la base de datos de misitio2 con el de models.py:
+    python manage.py sqlmigrate polls 0001

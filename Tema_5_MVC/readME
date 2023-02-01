@@ -1,0 +1,10 @@
+MODELO VISTA CONTROLADOR
+
+Controlador 
+Se encaraga de controlar que las vistas sean funcionales
+Intentamos que tenga pocas lineas
+
+Modelos - toda la logica de la empresa
+Esta a cargo del codigo 
+
+Vistas (Template) - se encarga de la parte visual de la pagina web, no hay nada de logica, solo se imprime
