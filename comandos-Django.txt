@@ -9,9 +9,30 @@ Cuando ya se ha instalado django
     python manage.py runserver 
     (dentro de foro (1ero))
 - crear las polls
-    python manage.py startapp polls 
+    python manage.py startapp polls(lo que quieras) 
     (dentro de foro (1ero))
 
+Dentro de polls creamos un archivo que se llama 
+    urls.py
+
+En este meteremos lo siguiente: 
+
+    from django.urls import path
+    from . import views
+
+    #esto es para url del normal
+    urlpatterns = [
+    path('',views.index, name='index')
+]
+
+En el urls.py de la otra carpeta es, hay que incluir el include, y el path: 
+    from django.contrib import admin
+    from django.urls import include, path
+
+    urlpatterns = [
+        path('polls/', include('esports.urls')),
+        path('admin/', admin.site.urls),
+    ]
 
 python manage.py runserver (dentro de mysite (1ero)) y visitar localhost:8000/polls/
 
@@ -54,7 +75,7 @@ DATABASES = {
 
 python manage.py makemigrations 
 
-ython manage.py migrations/migrate 
+ython manage.py migrate 
 
 
 - Hacemos en models.py. Son clases y tablas. 
@@ -78,6 +99,8 @@ class Choice(models.Model):
     votes = models.IntegerField(default=0)
 
 
+OTRO ENEMPLO
+
 - En mysite/settings.py modificamos el array.
 
 
@@ -92,7 +115,35 @@ INSTALLED_APPS = [
 ]
 
 Luego ejecutamos el comando: 
+
+- te muestra como se crearian las tablas antes de hacer el migrate la base de datos de misitio2 con el de models.py y:
+    python manage.py sqlmigrate polls 0001
 - modificacion de archivo
     python manage.py makemigrations polls
-- actualiza la base de datos de misitio2 con el de models.py:
-    python manage.py sqlmigrate polls 0001
+- para modificar algo al final
+    python manage.py migrate
+
+
+
+
+REGISTRAR DENTRO DEL ADMIN LAS CLASES
+para logearte como super user
+    pyhton manage.py createsuperuser
+    (ponemos un nombre y una contra)
+
+luego hacemos python manage.py runserver
+    nos metemos en http://localhost:8000/admins
+
+
+
+INSTALAMOS ESTO.
+pip 
+python manage.py shell_plus
+
+modificadores:
+
+Equipo.objects.all()
+Equipo.objects.get(nombre="profes")
+e = Equipo.objects.get(nombre="profes")
+
+e.juego_set.all() -> array de juegos
