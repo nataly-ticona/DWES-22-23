@@ -1,21 +1,16 @@
 - Para ver la pagina abrir en http://localhost:8000/polls/
     python manage.py runserver 
-    
-
-Cuando ya se ha instalado django 
+1. EMPEZAR UN PROYECTO   
 - para empezar un nuevo proyecto 
     django-admin startproject foro
-- iniciar el servidor creado
-    python manage.py runserver 
-    (dentro de foro (1ero))
 - crear las polls
-    python manage.py startapp polls(lo que quieras) 
-    (dentro de foro (1ero))
+    python manage.py startapp polls 
+- iniciar un servidor 
+    python manage.py runserver 
 
-Dentro de polls creamos un archivo que se llama 
-    urls.py
-
-En este meteremos lo siguiente: 
+2. MODIFICAR EL PROYECTO 
+- Dentro de polls creamos un archivo que se llama urls.py, lo que hacemos es importar las views para mandar las varibles. 
+  En este meteremos lo siguiente: 
 
     from django.urls import path
     from . import views
@@ -23,88 +18,48 @@ En este meteremos lo siguiente:
     #esto es para url del normal
     urlpatterns = [
     path('',views.index, name='index')
-]
+    ]
 
-En el urls.py de la otra carpeta es, hay que incluir el include, y el path: 
+En el urls.py de la carpeta principar: 
+
     from django.contrib import admin
     from django.urls import include, path
 
     urlpatterns = [
-        path('polls/', include('esports.urls')),
+        path('polls/', include('polls.urls')),
         path('admin/', admin.site.urls),
     ]
 
-python manage.py runserver (dentro de mysite (1ero)) y visitar localhost:8000/polls/
+3. INSTALAR SQL EN DJANGO 
 
-#añadir a la app de encuestas una ruta que sea holamundo para que cuando la visites pinte tu nombre
-
-apt-get update
-apt-get install python3-dev default-libmysqlclient-dev build-essential
+sudo apt-get update
+sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
 apt-get install python3-dev default-libmysqlclient-dev libzstd-dev
-pip install mysqlclient (sin root)(da igual la carpeta)
-python3 manage.py migrate
+pip install mysqlclient
 
+ 4. MODIFICAR SQL EN DJANGO
 
+- En mariadb creamos un usuario y una base de datos donde guardaremos nuestros datos de la aplicacion
 
+    CREATE DATABASE proyecto;
+    CREATE USER 'user_'@'localhost' IDENTIFIED BY '1234';
+    GRANT ALL PRIVILEGES ON proyecto.* TO 'user_'@'localhost' WITH GRANT OPTION;
 
-Una vez ya esta instalado pyhton y django 
+- En settings.py
 
-
-- MYSQL 
-
-En mariadb creamos un usuario y una base de datos
-
-CREATE DATABASE misitio2;
-CREATE USER 'user_misitio2'@'localhost' IDENTIFIED BY '1234';
-GRANT ALL PRIVILEGES ON misitio2.* TO 'user_misitio2'@'localhost' WITH GRANT OPTION;
-
-En settings.py de polls hay que cambiar el array de DATABASES: 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'misitio2',
-        'USER': 'user_misitio2',
-        'PASSWORD': '1234',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'proyecto',
+            'USER': 'user_',
+            'PASSWORD': '1234',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+        }
     }
-}
 
-
-
-python manage.py makemigrations 
-
-ython manage.py migrate 
-
-
-- Hacemos en models.py. Son clases y tablas. 
-La base de datos se fija en este fichero para validar que los datos sean correctos
-
-La modificamos asi:
-
-from django.db import models
-
-# Create your models here.
-
-
-class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-
-
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-
-
-OTRO ENEMPLO
-
-- En mysite/settings.py modificamos el array.
-
-
-INSTALLED_APPS = [
+    INSTALLED_APPS = [
+    'django_extensions',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -114,36 +69,134 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-Luego ejecutamos el comando: 
+- Hacemos en models.py. Son clases y tablas. 
+La base de datos se fija en este fichero para validar que los datos sean correctos
 
-- te muestra como se crearian las tablas antes de hacer el migrate la base de datos de misitio2 con el de models.py y:
-    python manage.py sqlmigrate polls 0001
-- modificacion de archivo
-    python manage.py makemigrations polls
-- para modificar algo al final
+La modificamos asi:
+
+    from django.db import models
+
+    class Question(models.Model):
+        question_text = models.CharField(max_length=200)
+        pub_date = models.DateTimeField('date published')
+
+
+    class Choice(models.Model):
+        question = models.ForeignKey(Question, on_delete=models.CASCADE)
+        choice_text = models.CharField(max_length=200)
+        votes = models.IntegerField(default=0)
+
+- Para registarlos en la aplicacion modificamos admin.py:
+    from django.contrib import admin
+
+    # de esports importame los modelos.
+    from .models import Equipo, Genero, Juego
+
+    admin.site.register(Equipo)
+    admin.site.register(Genero)
+    admin.site.register(Juego)
+
+- Para actualizar cambios de los settings y de otros archivos:
+    python manage.py makemigrations
     python manage.py migrate
 
+- Para modificar la base de datos con los models.py:
+    python manage.py sqlmigrate polls 0001
 
+5. AÑADIR DATOS DESDE ADMIN
 
-
-REGISTRAR DENTRO DEL ADMIN LAS CLASES
-para logearte como super user
+- Creamos un superusuario para acceder a la cuenta
     pyhton manage.py createsuperuser
-    (ponemos un nombre y una contra)
+    (ponemos un nombre y una contraseña)
 
-luego hacemos python manage.py runserver
+- Luego hacemos python manage.py runserver
     nos metemos en http://localhost:8000/admins
 
+6. CREACION DE TEMPLATES
+- Creamos dos carpetas de templates:
+    ~ una en polls y otra la carpeta del admin
+    ~ creamos otra dentro de esa misma para poder crear un acceso. 
+    Ej: templates/polls. Y dentro un html como base.html 
+    
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="vie wport" content="width=device-width, initial-scale=1.0">
+            <title>{%block title %}{% endblock %}</title>
+            <style>
+                *{
+                    margin: 0px;
+                    padding: 0px;
+                    box-sizing: border-box;
+                }
+            </style>
+        </head>
+        <body>
+            <main>
+                {% block content %}{% endblock %}
+            </main>
+        </body>
+        </html>
+
+    Ej: templates/proyecto. Y dentro un html como  noticia.html
+
+        {% extends 'proyecto/base.html' %}
+        {% block title %}
+        {{titulo}}
+        {% endblock %}
+
+        {% block content %}
+        <div>
+            <p>{{noticia}}</p>
+            <h1>{{ titulo }}</h1>
+            <p> Descripcion: {{ descripcion}}</p>
+            <img src="{{noticia.imagen.url}}" alt="foto">
+        </div>
+        {% endblock %}
+
+- Añadimos la carpeta a los settings.py para poder acceder al proyecto de templates
+
+    INSTALLED_APPS = [
+        'proyecto',
+    ]
+
+- Modificamos las views.py
+
+    def detalle_equipo(request, nombre_equipo):
+    varEquipoTemplate = Equipo.objects.get(nombre = nombre_equipo)
+    context = {
+        'equipoVarTenplate': varEquipoTemplate,
+        'publicidad':'IES Juan de la Cierva',
+        }
+    return render(request,'noticias/noticia.html', context)
+
+- Si enviamos variables en la URL modificamos la urls.py de polls
+
+    #import 
+    from django.urls import path
+    from . import views 
+
+    #path('<str:nombre_equipo>') -> indica el tipo de variable y la variable
+    urlpatterns = [
+        path('',views.index, name='index'),
+        path('<str:nombre_equipo>/', views.detalle_equipo, name='detalle_equipo'),
+    ]
 
 
-INSTALAMOS ESTO.
-pip 
-python manage.py shell_plus
+7. AÑADIR IMAGENES
+- Dentro de nuestra carpeta creamos una nueva que se llame media, ahi almacenaremos todas las imagenes
 
-modificadores:
+- Añadiremos a settings.py
 
-Equipo.objects.all()
-Equipo.objects.get(nombre="profes")
-e = Equipo.objects.get(nombre="profes")
+    #ruta absoluta
+    MEDIA_ROOT=BASE_DIR / 'media'
 
-e.juego_set.all() -> array de juegos
+    MEDIA_URL = 'media/'
+
+- En los templates añadiremos .url 
+    <img src="{{equipoVarTenplate.foto.url}}" alt="foto" width="100px" height="100px">
+
+- En los models.py tenemos que añadir que es de tipo imagen
+     foto = models.ImageField(upload_to='equipos', null=True)

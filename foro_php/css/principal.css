@@ -1,0 +1,32 @@
+.publicacion{
+    margin: 0 auto;
+    
+    width: 50%;
+    margin-bottom: 20px;
+    border: 1px solid rgba(195, 117, 223, 0.813);
+    border-radius: 5px;
+}
+
+.publicacion > p{
+    margin-top: 0px;
+    color: aliceblue;
+}
+.cont0{
+    background-color:  rgba(195, 117, 223, 0.813);
+    font-size: 14px;
+    padding-left: 5px;
+}
+.cont1{
+    font-size: 20px;
+}
+.cont2{
+    font-size: 17px;
+}
+.cont3{
+    font-size: 15px;
+}
+
+h1{
+    text-align: center;
+    color: white;
+}

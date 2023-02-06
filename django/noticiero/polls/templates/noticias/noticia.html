@@ -1,0 +1,14 @@
+<!-- un echo solo es con doble llave -->
+{% extends 'noticiero/base.html' %}
+{% block title %}
+{{titulo}}
+{% endblock %}
+
+{% block content %}
+<div>
+    <p>{{noticia}}</p>
+    <h1>{{ titulo }}</h1>
+    <p> Descripcion: {{ descripcion}}</p>
+    <img src="{{noticia.foto1.url}}"  alt="foto">
+</div>
+{% endblock %}

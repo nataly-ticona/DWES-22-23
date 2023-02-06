@@ -1,0 +1,22 @@
+<!-- un echo solo es con doble llave -->
+{% extends 'cosa/base.html' %}
+{% block title %}
+Detalle: {{ equipoVarTenplate.nombre }}
+{% endblock %}
+
+{% block content %}
+<div>
+    <h1>{{ equipoVarTenplate.nombre }}</h1>
+    <p> Descripcion: {{ equipoVarTenplate.descripcion }}</p>
+    <img src="{{equipoVarTenplate.foto.url}}" alt="foto" width="100px" height="100px">
+    <ul>
+        {% for juego in equipoVarTenplate.juegos.all %}
+        <li><a href="{% url 'esports_detalle_juego' juego.nombre %}"> {{juego}} </a></li>
+        {% endfor %}
+    </ul>
+    <p>{{publicidad}}</p>
+    {% for noticia in utimasNoticias %}
+        <span> {{noticia}}</span>
+    {% endfor %}
+</div>
+{% endblock %}
