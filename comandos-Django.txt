@@ -200,3 +200,14 @@ La modificamos asi:
 
 - En los models.py tenemos que añadir que es de tipo imagen
      foto = models.ImageField(upload_to='equipos', null=True)
+
+- en urls de admin añadiremos una funcion 
+    from django.contrib import admin
+    from django.urls import include, path
+    from django.conf.urls.static import static
+    from django.conf import settings
+
+    urlpatterns = [
+        path('polls/', include('polls.urls')),
+        path('admin/', admin.site.urls),
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
