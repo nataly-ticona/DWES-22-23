@@ -211,3 +211,17 @@ La modificamos asi:
         path('polls/', include('polls.urls')),
         path('admin/', admin.site.urls),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+8. Modificar los errores
+
+- En las views.py de polls importamos esto:
+    from django.shortcuts import render, get_object_or_404
+
+- Para mandarlo en una funcion tambien modificamos esto en views.py
+    def detalle2(request, titulo):
+    # enviamos el contexto directamente en el parametro
+    return render(request, 'noticias/noticia.html',{'noticiaTemplate':get_object_or_404(Noticia, titulo = titulo)})
+
+- En la parte de settings.py de admin (la que se crea por defecto), modificamos una variable
+
+    DEBUG = False

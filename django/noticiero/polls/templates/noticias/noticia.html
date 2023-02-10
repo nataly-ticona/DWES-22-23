@@ -7,13 +7,15 @@
     }
     p,h1{
         margin: 0 auto;
-        width: 65%;
+       
         padding: 20px;
     }
     h1{
-        font-size: 120px;
+        width: 80%;
+        font-size: 100px;
     }
     p{
+        width: 65%;
         text-align: justify;
         font-size: 35px;
     }
@@ -29,6 +31,7 @@
 
 {% block content %}
     <h1>{{ noticia.titulo }}</h1>
-    <p> Descripcion: {{ noticia.descripcion}}</p>
+    <hr>
+    <p> {{ noticia.descripcion}}</p>
     <img src="{{noticia.img1.url}}"  alt="foto" >
 {% endblock %}
