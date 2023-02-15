@@ -1,0 +1,18 @@
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    <!-- el csrf_token es un token de seguridad para evitar posibles robos de datos -->
+    {% csrf_token %}
+    <fieldset>
+        <legend>
+            <h1>{{ encuesta.question_text }}</h1>
+            <h3>{{encuesta.pub_date}}</h3>
+        </legend>
+        <!-- errores del formulario -->
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% for choice in encuesta.op.all%}
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+    </fieldset>
+    <input type="submit" value="Vote">
+</form>

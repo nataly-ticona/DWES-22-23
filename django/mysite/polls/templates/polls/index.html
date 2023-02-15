@@ -1,0 +1,16 @@
+<h1>Listado de preguntas </h1>
+{% if latest_question_list %}
+<ul>
+    {% for question in latest_question_list %}
+    <!-- para no poner texto directo ponemos el url, ponemos la funcion de url -->
+        <li><a href="{% url 'polls:detalle' question.id%}"> {{question.question_text}}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+<!-- exportar el css -->
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
