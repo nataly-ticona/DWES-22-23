@@ -24,7 +24,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')[:5]
+        return Question.objects.order_by('-pub_date')
 
 class CosasDePreguntas():
     # esta clase hereda de este y el de Question
@@ -104,3 +104,9 @@ def vote(request, pk):
         selected_choice.save()
         return HttpResponseRedirect(reverse(f"/polls/{question.id}/resultado/"))
 
+# DE SERIALIZER
+from rest_framework import viewsets
+from .serializer import QuestionSerializer
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    queryset = Question.objects.all().order_by('pub_date')

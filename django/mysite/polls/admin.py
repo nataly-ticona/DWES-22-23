@@ -14,6 +14,10 @@ class QuestionAdmin(admin.ModelAdmin):
     ]
     # con esto metemos las opciones del la pregunta que tenemos en Question
     inlines = [ChoiceInLine]
+    list_display = ('question_text', 'pub_date')
+    list_filter = ['question_text','pub_date']
+    # el numero de preguntas que se muestran
+    list_per_page = 2
 
 
 admin.site.register(Question, QuestionAdmin)
