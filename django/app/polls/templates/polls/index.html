@@ -1,9 +1,14 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Productos{% endblock %}
+
+{% block content %}
 <h1>Estos son los productos</h1>
 {% if productos %}
-<div>
+<div class="productos">
     {% for producto in productos %}
     <!-- para no poner texto directo ponemos el url, ponemos la funcion de url -->
-        <div>
+        <div class="producto">
             
             <h4>{{producto.name_product}}</h4>
             <!-- para poner la url:
@@ -20,3 +25,8 @@
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+{% endblock %}
+
+<!-- exportar el css -->
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/index.css' %}">
