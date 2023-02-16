@@ -6,18 +6,6 @@ from django.urls import reverse
 # importamos generic
 from django.views import generic
 
-"""def index(request): 
-    # corta al final en 5 lineas [:5]
-    preguntas = Question.objects.order_by('-pub_date')
-    return render(
-        request, 
-        'polls/index.html',
-        {
-        'latest_question_list':preguntas
-        }
-    )
-"""
-
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
@@ -110,3 +98,18 @@ from .serializer import QuestionSerializer
 
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all().order_by('pub_date')
+
+
+
+
+"""def index(request): 
+    # corta al final en 5 lineas [:5]
+    preguntas = Question.objects.order_by('-pub_date')
+    return render(
+        request, 
+        'polls/index.html',
+        {
+        'latest_question_list':preguntas
+        }
+    )
+"""

@@ -17,8 +17,9 @@
 
     #esto es para url del normal
     urlpatterns = [
-    path('',views.index, name='index')
+    path('', views.IndexView.as_view(), name='index'),
     ]
+
 
 En el urls.py de la carpeta principar: 
 
@@ -29,6 +30,22 @@ En el urls.py de la carpeta principar:
         path('polls/', include('polls.urls')),
         path('admin/', admin.site.urls),
     ]
+- En las views 
+    from django.shortcuts import render,  get_object_or_404
+    from django.http import HttpResponse,HttpResponseRedirect
+    from .models import Question, Choice
+    # para la funcionde de vote HttpResponseRedirect, Choice, reverse (este hay que poner toda la linea)
+    from django.urls import reverse
+    # importamos generic
+    from django.views import generic
+
+    class IndexView(generic.ListView):
+        template_name = 'polls/index.html'
+        context_object_name = 'latest_question_list'
+
+        def get_queryset(self):
+            """Return the last five published questions."""
+            return Question.objects.order_by('-pub_date')
 
 3. INSTALAR SQL EN DJANGO 
 
@@ -37,7 +54,7 @@ sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
 apt-get install python3-dev default-libmysqlclient-dev libzstd-dev
 pip install mysqlclient
 
- 4. MODIFICAR SQL EN DJANGO
+4. MODIFICAR SQL EN DJANGO
 
 - En mariadb creamos un usuario y una base de datos donde guardaremos nuestros datos de la aplicacion
 
@@ -106,7 +123,7 @@ La modificamos asi:
 5. AÑADIR DATOS DESDE ADMIN
 
 - Creamos un superusuario para acceder a la cuenta
-    pyhton manage.py createsuperuser
+    python manage.py createsuperuser
     (ponemos un nombre y una contraseña)
 
 - Luego hacemos python manage.py runserver
@@ -212,6 +229,7 @@ La modificamos asi:
         path('admin/', admin.site.urls),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+
 8. Modificar los errores
 
 - En las views.py de polls importamos esto:
@@ -225,3 +243,10 @@ La modificamos asi:
 - En la parte de settings.py de admin (la que se crea por defecto), modificamos una variable
 
     DEBUG = False
+
+
+
+----------
+al final
+descargar librerias nuevas
+pip install djangorestframework
