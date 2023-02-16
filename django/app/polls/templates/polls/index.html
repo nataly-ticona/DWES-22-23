@@ -15,7 +15,7 @@
             'detail' -> nombre de la url, no es el metodo, es el name
             producto.id -> el parametro que hemos mandado en la url -->
             <a href="{% url 'detail' producto.id %}">
-            <img src="{{producto.photo_product.url}}" alt="imagen{{product.name_product}}">
+            <img src="{{producto.photo_product.url}}" alt="imagen de {{producto.name_product}}">
             </a>
             <p>{{producto.description_product}}</p>
             <span>{{producto.pub_date_product}}</span>
