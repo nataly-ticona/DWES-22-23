@@ -1,8 +1,34 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.titulo{
+    text-align: center;
+    padding: 10px;
+}
 .productos{
     width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4,20%);
+    gap: 1%;
 }
 
 .producto{
- width: 90%;
- background-color: aqua;   
+    height: fit-content;
+    border-radius: 20px;
+    padding: 2%;
+    background-color:  rgb(228, 208, 249);
+    text-align: center;
+}
+
+.producto>a{
+    margin: 0 auto;
+    width: 100%;
+}
+.producto>a>img{
+    width: 90%;
+    padding-top: 2%;
+    border-radius: 20px;
+    height: 200px;
 }

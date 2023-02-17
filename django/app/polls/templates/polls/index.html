@@ -1,24 +1,27 @@
-{% extends 'app/base.html' %}
+{%extends 'app/base.html'%}  
+ <!--importar los links  CSS -->
+{% block link %}
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/index.css' %}">
+{% endblock %}
 
-{% block title %}Productos{% endblock %}
+{%block title %}Productos{% endblock %}
 
+<!-- exportar el css -->
 {% block content %}
-    <h1>Estos son los productos</h1>
+<h1 class="titulo">Estos son los productos</h1>
     {% if productos %}
     <div class="productos">
         {% for producto in productos %}
         <!-- para no poner texto directo ponemos el url, ponemos la funcion de url -->
             <div class="producto">
-                
-                <h4>{{producto.name_product}}</h4>
                 <!-- para poner la url:
                 'detail' -> nombre de la url, no es el metodo, es el name
                 producto.id -> el parametro que hemos mandado en la url -->
                 <a href="{% url 'detail' producto.id %}">
                 <img src="{{producto.photo_product.url}}" alt="imagen de {{producto.name_product}}">
                 </a>
-                <p>{{producto.description_product}}</p>
-                <span>{{producto.pub_date_product}}</span>
+                <p>{{producto.name_product}}</p>
             </div>
         {% endfor %}
     </div>
@@ -27,6 +30,5 @@
     {% endif %}
 {% endblock %}
 
-<!-- exportar el css -->
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/index.css' %}">
+
+
