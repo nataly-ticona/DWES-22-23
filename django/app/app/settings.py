@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'djmoney',
     'app',
     'django_extensions',
     'polls.apps.PollsConfig',

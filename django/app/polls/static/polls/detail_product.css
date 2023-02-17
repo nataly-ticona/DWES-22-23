@@ -2,20 +2,21 @@
     padding: 0;
     margin: 0;
 }
-
 .producto-main{
     width: 90%;
     height: fit-content;
     margin: 0 auto;
     text-align: center;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 100%);
-    background-color: azure;
+    background-color: rgb(223, 209, 209);
 }
 
 .producto-main img{
-    width: 60%;
-    height: 400px;
+    width: 600px;
+    height: 600px;
+}
+.descripcion{
+    margin: 0 auto;
+    width: 50%;
 }
 /* recomendaciones otros productos */
 .recomendaciones{
@@ -23,17 +24,21 @@
     margin: 0 auto;
     text-align: center;
     display: grid;
-    background-color: red;
+    background-color: rgb(223, 209, 209);
     grid-template-columns: repeat(auto-fill, 200px);
 }
 
 .producto{
-    background-color: aqua;
+    background-color: rgb(202, 199, 199);
     height: fit-content;
     margin: 2%;
+    border-radius: 10px;
 }
 
 .producto img{
     width: 150px;
     height: 200px;
+}
+.producto p{
+    font-size: 15px;
 }

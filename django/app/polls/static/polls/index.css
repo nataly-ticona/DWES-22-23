@@ -10,7 +10,7 @@
     width: 80%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(4,20%);
+    grid-template-columns: repeat(auto-fill, 250px);
     gap: 1%;
 }
 
@@ -18,8 +18,8 @@
     height: fit-content;
     border-radius: 20px;
     padding: 2%;
-    background-color:  rgb(228, 208, 249);
     text-align: center;
+    background-color: aliceblue;
 }
 
 .producto>a{
