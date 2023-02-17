@@ -1,31 +1,42 @@
-<div class="producto-main">
-    <p>{{producto.name_product}}</p>
-    <img src="{{producto.photo_product.url}}" alt="imagen{{product.name_product}}">
-    <p>{{producto.description_product}}</p>
-    <span>{{producto.pub_date_product}}</span>
-</div>
+{%extends 'app/base.html'%}  
+ <!--importar los links  CSS -->
+{% block link %}
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/detail_product.css' %}">
+{% endblock %}
 
-<div class="recomendaciones">
-    {% if productos %}
-        {% for producto in productos %}
-        <!-- para no poner texto directo ponemos el url, ponemos la funcion de url -->
-            <div>
-                <h4>{{producto.name_product}}</h4>
-                <!-- para poner la url:
-                'detail' -> nombre de la url, no es el metodo, es el name
-                producto.id -> el parametro que hemos mandado en la url -->
-                <a href="{% url 'detail' producto.id %}">
-                <img src="{{producto.photo_product.url}}" alt="imagen{{product.name_product}}">
-                </a>
-                <p>{{producto.description_product}}</p>
-                <span>{{producto.pub_date_product}}</span>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>No polls are available.</p>
-    {% endif %}
-</div>
+{%block title %} 
+    {{producto.name_product}} 
+{% endblock %}
 
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/detail_product.css' %}">
+{% block content %}
+    <h2>{{producto.name_product}}</h2>
+    <div class="producto-main">
+        <img src="{{producto.photo_product.url}}" alt="imagen{{product.name_product}}">
+        <div class="descripcion">
+            <p>{{producto.description_product}}</p>
+            <span>{{producto.pub_date_product}}</span>
+        </div>
+    </div>
 
+    <div class="recomendaciones">
+        {% if productos %}
+            {% for producto in productos %}
+            <!-- para no poner texto directo ponemos el url, ponemos la funcion de url -->
+                <div class="producto">
+                    <p>{{producto.name_product}}</p>
+                    <!-- para poner la url:
+                    'detail' -> nombre de la url, no es el metodo, es el name
+                    producto.id -> el parametro que hemos mandado en la url -->
+                    <a href="{% url 'detail' producto.id %}">
+                    <img src="{{producto.photo_product.url}}" alt="imagen{{product.name_product}}">
+                    </a>
+                    <p>{{producto.description_product}}</p>
+                    <span>{{producto.pub_date_product}}</span>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+    </div>
+{% endblock %}

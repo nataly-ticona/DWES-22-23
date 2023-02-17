@@ -2,3 +2,38 @@
     padding: 0;
     margin: 0;
 }
+
+.producto-main{
+    width: 90%;
+    height: fit-content;
+    margin: 0 auto;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100%);
+    background-color: azure;
+}
+
+.producto-main img{
+    width: 60%;
+    height: 400px;
+}
+/* recomendaciones otros productos */
+.recomendaciones{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    display: grid;
+    background-color: red;
+    grid-template-columns: repeat(auto-fill, 200px);
+}
+
+.producto{
+    background-color: aqua;
+    height: fit-content;
+    margin: 2%;
+}
+
+.producto img{
+    width: 150px;
+    height: 200px;
+}
