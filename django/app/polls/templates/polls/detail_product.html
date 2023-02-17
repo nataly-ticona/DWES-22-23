@@ -10,7 +10,9 @@
 {% endblock %}
 
 {% block content %}
-    
+    <button>
+        <a href="{% url 'index' %}"> Volver al inicio</a>
+    </button>
     <div class="producto-main">
         <h2>{{producto.name_product}}</h2>
         <img src="{{producto.photo_product.url}}" alt="imagen{{product.name_product}}">
@@ -19,6 +21,7 @@
             <p>{{producto.description_product}}</p>
             <span>{{producto.pub_date_product}}</span>
         </div>
+        <br>
     </div>
     <div class="recomendaciones">
         {% if productos %}
