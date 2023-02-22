@@ -1,0 +1,81 @@
+COMANDOS MARIADB 
+    CREATE DATABASE repaso;
+    GRANT ALL PRIVILEGES ON repaso. * TO 'nataly'@'localhost' WITH GRANT OPTION;
+
+1.SCRIPT
+    Creacion de bases de datos
+
+        DROP TABLE IF EXISTS tokens CASCADE;
+        DROP TABLE IF EXISTS usuarios CASCADE;
+
+
+        CREATE TABLE usuarios (
+            id int auto_increment PRIMARY KEY,
+            nombre VARCHAR(255) NOT NULL UNIQUE,
+            passwd VARCHAR(255) NOT NULL ,
+            img    VARCHAR(255),
+            correo VARCHAR(255) NOT NULL UNIQUE,
+            descripcion TEXT
+        );
+
+        CREATE TABLE tokens (
+            id int auto_increment PRIMARY KEY,
+            id_usuario int,
+            valor VARCHAR(255),
+            expiracion DATETIME NOT NULL DEFAULT (NOW() + INTERVAL 7 DAY),
+            CONSTRAINT fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+        );
+
+2.SRC
+    INIT.php
+        <?php 
+            //php de variables secretas 
+            require("config.php");
+            //no hemos creado estos php pero se necesitan
+            require("../vendor/autoload.php");
+            require("../src/DWESBaseDatos.php");
+
+            require("Mailer.php");
+            $DB = DWESBaseDatos::obtenerInstancia();
+            //iniciamos la base de datos y las varibales son de CONFIG.php
+            $DB->inicializa(
+                $CONFIG['db_name'],
+                $CONFIG['db_user'],
+                $CONFIG['db_pass']
+            );
+
+            //iniciamos la sesion
+            session_start();
+        ?>
+    CONFIG.php 
+        <?php 
+            $CONFIG['title']="App de repaso";
+            // datos de la base de datos
+            $CONFIG['db_name']="repaso";
+            $CONFIG['db_user']="nataly";
+            $CONFIG['db_pass']="1234";
+            $CONFIG['db_host']="localhost";
+            // datos del correo
+            $CONFIG['secreto']="Mamani2003";
+            $CONFIG['smtp']='smtp.educa.madrid.org';
+            const LONG_TOKEN=64;
+        ?>
+
+    DWESBaseDatos.php 
+    - Copiar directamente porque es un php externo que hemos copiado. 
+      Es una clase que almacena todos los metodos de recoger datos de una select, un update, delete...
+
+    Mailer.php
+    - Copiar directamente porque es un php externo que hemos copiado
+      Es una clase con la cual podemos enviar correos a otras personas
+
+3.VENDOR
+    - Copiar directamente porque es una carpeta externa que hemos copiado
+      Lo que hace esta carpeta es cargar todas las clases antes con el autoload.php 
+
+4. .GITIGNORE
+    -Datos que no podemos mostrar al subirlo a un sitio publico (github)
+        src/config.php
+        vendor/*
+
+5.PUBLIC
