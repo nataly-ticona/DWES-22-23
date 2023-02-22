@@ -9,7 +9,7 @@ $pageHeader="Iniciar sesion";
 $pageId="login";
 
 
-ob_start(); //todo lo que escriba ahora no se escribira
+ob_start(); //todo lo que escriba ahora no se escribira, mandamos todo esto al template
 
 //creamos otra pagina para almacenar el token 
 if (isset($_POST["enviar"])) {
@@ -55,7 +55,7 @@ if (isset($_POST["enviar"])) {
     }else{
         //mostramos el error que salga !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         echo "no va :')";
-        echo "<pre>" . print_r($user) . "</pre>";
+        echo print_r($user);
     }
 
     if (isset($_GET['redirect'])) {
