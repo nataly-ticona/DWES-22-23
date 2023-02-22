@@ -47,11 +47,15 @@ ob_start(); //todo lo que escriba ahora no se escribira
         border-bottom-right-radius: 10px;
     }
 </style>
-<table>
-    <?php 
-        //mostramos solo los datos que queremos, con 2 foreach salen todos los datos
-        foreach ($usuarios as $usuario) {
-            ?>
+<?php $styleCss=ob_get_clean(); 
+ob_start();
+?>
+
+        <table>
+            <?php 
+                //mostramos solo los datos que queremos, con 2 foreach salen todos los datos
+                foreach ($usuarios as $usuario) {
+                    ?>
             <tr >
                 <td class="color-td border-radius-1" class="photo">
                     <img src="<?=$usuario['img']?>" class="img-user" alt="imagen <?=$usuario['nombre']?>">
@@ -66,8 +70,8 @@ ob_start(); //todo lo que escriba ahora no se escribira
             </tr>
             <?php
         }
-    ?>
-</table>
+            ?>
+        </table>
 <?php
 $content=ob_get_clean(); 
 

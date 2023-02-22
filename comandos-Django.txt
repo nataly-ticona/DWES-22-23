@@ -107,11 +107,9 @@ La modificamos asi:
     from django.contrib import admin
 
     # de esports importame los modelos.
-    from .models import Equipo, Genero, Juego
+    from .models import Question,Choice
 
-    admin.site.register(Equipo)
-    admin.site.register(Genero)
-    admin.site.register(Juego)
+    admin.site.register(Question, Choice)
 
 - Para actualizar cambios de los settings y de otros archivos:
     python manage.py makemigrations
@@ -120,16 +118,7 @@ La modificamos asi:
 - Para modificar la base de datos con los models.py:
     python manage.py sqlmigrate polls 0001
 
-5. AÑADIR DATOS DESDE ADMIN
-
-- Creamos un superusuario para acceder a la cuenta
-    python manage.py createsuperuser
-    (ponemos un nombre y una contraseña)
-
-- Luego hacemos python manage.py runserver
-    nos metemos en http://localhost:8000/admins
-
-6. CREACION DE TEMPLATES
+5. CREACION DE TEMPLATES
 - Creamos dos carpetas de templates:
     ~ una en polls y otra la carpeta del admin
     ~ creamos otra dentro de esa misma para poder crear un acceso. 
@@ -142,6 +131,7 @@ La modificamos asi:
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="vie wport" content="width=device-width, initial-scale=1.0">
             <title>{%block title %}{% endblock %}</title>
+            {% block link %}{% endblock %}
             <style>
                 *{
                     margin: 0px;
@@ -172,6 +162,17 @@ La modificamos asi:
             <img src="{{noticia.imagen.url}}" alt="foto">
         </div>
         {% endblock %}
+
+
+6. AÑADIR DATOS DESDE ADMIN
+
+- Creamos un superusuario para acceder a la cuenta
+    python manage.py createsuperuser
+    (ponemos un nombre y una contraseña)
+
+- Luego hacemos python manage.py runserver
+    nos metemos en http://localhost:8000/admins
+
 
 - Añadimos la carpeta a los settings.py para poder acceder al proyecto de templates
 

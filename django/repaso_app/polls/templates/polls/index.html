@@ -1,0 +1,15 @@
+
+
+{% extends 'proyecto/base.html' %}
+{% block title %}
+{{titulo}}
+{% endblock %}
+
+{% block content %}
+<div>
+    <p>{{noticia}}</p>
+    <h1>{{ titulo }}</h1>
+    <p> Descripcion: {{ descripcion}}</p>
+    <img src="{{noticia.imagen.url}}" alt="foto">
+</div>
+{% endblock %}
