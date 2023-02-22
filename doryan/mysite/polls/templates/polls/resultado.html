@@ -1,0 +1,12 @@
+<h1>{{ encuesta.question_text }}</h1>
+<h2> {{ encuesta.pub_date }}</h2>
+<div>
+    <ul>
+        {% for o in encuesta.options.all %}
+        <li>{{ o.choice_text }}  ({{o.votes}})</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<a href="{% url 'polls:index' %}">listado</a>
+<a href="{% url 'polls:detalle' encuesta.pk %}">Volver a votar</a>

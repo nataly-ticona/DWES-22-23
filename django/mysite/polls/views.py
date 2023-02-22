@@ -14,7 +14,7 @@ class IndexView(generic.ListView):
         """Return the last five published questions."""
         return Question.objects.order_by('-pub_date')
 
-class CosasDePreguntas():
+class CosasDePreguntas(generic.DetailView):
     # esta clase hereda de este y el de Question
     model=Question
     context_object_name = 'encuesta'
@@ -30,8 +30,8 @@ class CosasDePreguntas():
     )
 """
 
-class DetailView(generic.DetailView):
-    model = Question
+class DetailView(CosasDePreguntas):
+    # model = Question
     template_name = 'polls/detalle.html'
 
     # def get_query_set(self):
@@ -49,7 +49,7 @@ def resultado(request, id):
     }
     )
 """
-class ResultsView(generic.DetailView):
+class ResultsView(CosasDePreguntas):
     model = Question
     template_name = 'polls/resultados.html'
 
@@ -79,7 +79,7 @@ def vote(request, pk):
     question = get_object_or_404(Question, pk=pk)
     try:
         # esto es como el $_POST['choice'] del formulario de input
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+        selected_choice = question.options.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the question voting form.
         # poner detalle.html
@@ -90,7 +90,7 @@ def vote(request, pk):
     else:
         selected_choice.votes += 1
         selected_choice.save()
-        return HttpResponseRedirect(reverse(f"/polls/{question.id}/resultado/"))
+        return HttpResponseRedirect(reverse('polls:resultado', args=(question.id,)))
 
 # DE SERIALIZER
 from rest_framework import viewsets
