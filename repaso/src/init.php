@@ -5,7 +5,7 @@
     require("../vendor/autoload.php");
     require("../src/DWESBaseDatos.php");
 
-    require("Mailer.php");
+    // require("Mailer.php");
     $DB = DWESBaseDatos::obtenerInstancia();
     //iniciamos la base de datos y las varibales son de CONFIG.php
     $DB->inicializa(
