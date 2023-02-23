@@ -1,0 +1,3 @@
+base de datos = linkedin
+usuario = linkedin
+psswd = 1234

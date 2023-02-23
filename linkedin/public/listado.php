@@ -21,14 +21,14 @@ ob_start(); //todo lo que escriba ahora no se escribira
     .img-user{
         width: 100px;
         height: 100px;
-        border-radius: 30%;
     }
     
     table{margin: 0 auto;}
     table, tr, td{
         border-collapse:collapse;
+        border: 1px solid black;
     }
-    .color-td{
+    /* .color-td{
         width: 200px;
         height:100px;
         background-color: #E8F3F3;
@@ -45,13 +45,18 @@ ob_start(); //todo lo que escriba ahora no se escribira
     .border-radius-2{
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
-    }
+    } */
 </style>
 <?php $styleCss=ob_get_clean(); 
 ob_start();
 ?>
 
         <table>
+            <tr>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+            </tr>
             <?php 
                 //mostramos solo los datos que queremos, con 2 foreach salen todos los datos
                 foreach ($usuarios as $usuario) {
@@ -63,15 +68,15 @@ ob_start();
                 <td class="color-td border-radius-2"class="no-photo">
                     <?=$usuario['nombre']?>
                 </td>
-            </tr>
-            <tr>
-                <td class="no-color-td"></td>
-                <td class="no-color-td"></td>
+                <td class="color-td border-radius-2"class="no-photo">
+                    <?=$usuario['descripcion']?>
+                </td>
             </tr>
             <?php
         }
             ?>
         </table>
+        <a href="edit.php">Editar mi perfils</a>
 <?php
 $content=ob_get_clean(); 
 

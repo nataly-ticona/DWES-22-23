@@ -36,6 +36,8 @@ if (isset($_POST['actualizar'])) {
     //validar que sea una imagen
 }
 
+
+
 $DB->ejecuta(
     "SELECT *
     FROM usuarios
@@ -68,5 +70,6 @@ $usuario = $DB->obtenElDato();
         <br>
         <input type="submit" name='actualizar' value="Actualizar">
     </form>
+    <button><a href="listado.php">Volver al listado</a></button>
 </body>
 </html>
