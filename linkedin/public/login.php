@@ -46,22 +46,23 @@ if (isset($_POST["enviar"])) {
                 ["expires" => (time() + (7 * 24 * 60 * 60)), "httponly" => true 
                 ]
             );
-                header("Location: listado.php");
-                die();
+        }
+        if (isset($_GET['redirect'])) {
+            header("Location: " . $_GET['redirect']);
+            die();
+        }else{
+            header("Location: listado.php");
+            die();
+    
         }
 
-        header("Location: listado.php");
-            die();
     }else{
         //mostramos el error que salga !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         echo "no va :')";
         echo print_r($user);
     }
 
-    if (isset($_GET['redirect'])) {
-        header("Location: " . $_GET['redirect']);
-        die();
-    }
+
     
 }
 

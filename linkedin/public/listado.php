@@ -11,6 +11,16 @@ $pageId="listado";
 $DB->ejecuta("SELECT * FROM usuarios");
 $usuarios= $DB->obtenDatos();
 
+if (isset($_POST['editarPerfil'])) {
+    if (!isset($_SESSION["nombre"]) || $_SESSION["nombre"]=="") {
+        //despues de enviarlo guardo el redirect a donde estabas
+        header("Location: login.php?redirect=edit.php");
+        die();
+    }else{
+        header("Location: edit.php");
+        die();
+    }
+}
 
 
 //se lo pasa al template
@@ -57,7 +67,7 @@ ob_start();
                 <th>Nombre</th>
                 <th>Descripcion</th>
             </tr>
-            <?php 
+            <?php    
                 //mostramos solo los datos que queremos, con 2 foreach salen todos los datos
                 foreach ($usuarios as $usuario) {
                     ?>
@@ -76,7 +86,9 @@ ob_start();
         }
             ?>
         </table>
-        <a href="edit.php">Editar mi perfils</a>
+        <form action="" method="post">
+            <input type="submit" name="editarPerfil" value="Editar el perfil">
+        </form>
 <?php
 $content=ob_get_clean(); 
 
